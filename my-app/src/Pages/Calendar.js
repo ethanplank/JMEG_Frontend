@@ -1,9 +1,12 @@
-
+import React, {Fragment} from 'react';
+import Searchbar from './Searchbar';
 
 export default function Calendar(){
   return (
-      <h1>2023 Calendar</h1>
-    
+    <Fragment>
+       <h1>2023 Calendar</h1>
+       <Searchbar />
+    </Fragment>
     
   )
 
