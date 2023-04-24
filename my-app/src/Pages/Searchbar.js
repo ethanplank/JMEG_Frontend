@@ -11,7 +11,7 @@ const SearchBar = () => (
                 placeholder="Search Courses"
                 name="s" 
             />
-            <button type="submit">Enter</button>
+            <button size="lg" style={{height: '10', width : '50px'}} type="submit">Enter</button>
         </div>
         
     </form>
