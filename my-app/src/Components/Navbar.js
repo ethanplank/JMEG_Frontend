@@ -1,38 +1,39 @@
+import {Link, useMatch, useResolvedPath} from "react-router-dom"
 export default function Navbar() {
+  
     return (
       <nav className="navigation">
-        <a href="/" className="brand-name">
+        <Link to="/" className="brand-name">
           Schedlr
-        </a>
-        {/* <button className="hamburger">
- 
-          <svg
-            xmlns="tab-svgrepo-com.svg"
-            className="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="white"
-          >
-            <path
-              fillRule="evenodd"
-              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button> */}
+        </Link>
         <div
           className="navigation-menu">
           <ul>
-            <li>
+            {/* <li>
               <a href="/home">Home</a>
             </li>
             <li>
-              <a href="/about">Calendar</a>
+              <a href="/calendar">Calendar</a>
             </li>
             <li>
-              <a href="/contact">Login</a>
-            </li>
+              <a href="/login">Login</a>
+            </li> */}
+            <CustomLink to="/home">Home</CustomLink>
+            <CustomLink to="/calendar">Calendar</CustomLink>
+            <CustomLink to="/login">Login</CustomLink>
           </ul>
         </div>
       </nav>
     );
+  }
+
+  function CustomLink({to , children, ...props}){
+    //const path = window.location.pathname
+    const resovledPath  = useResolvedPath(to)
+    const isActive = useMatch({path: resovledPath.pathname, end: true})
+    return (
+      <li className={isActive == to ? "active" : ""}>
+        <Link to={to} {... props}>{children}</Link>
+      </li>
+    )
   }

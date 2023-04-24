@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter}from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
 
 // var element = React.createElement('h1', { className: 'greeting' }, 'Hello, world!');
 // ReactDOM.render(element, document.getElementById('root'));
@@ -12,7 +14,10 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+    {/* <App /> */}
   </React.StrictMode>
 );
 
