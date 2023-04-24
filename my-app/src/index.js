@@ -6,10 +6,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 
-// var element = React.createElement('h1', { className: 'greeting' }, 'Hello, world!');
-// ReactDOM.render(element, document.getElementById('root'));
-
-// reportWebVitals();
+// Bootstrap CSS
+import "bootstrap/dist/css/bootstrap.min.css";
+// Bootstrap Bundle JS
+import "bootstrap/dist/js/bootstrap.bundle.min";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

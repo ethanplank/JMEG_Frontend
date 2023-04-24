@@ -1,3 +1,4 @@
+
 const SearchBar = () => (
     <form action="/" method="get">
         <div className="searchbar">
