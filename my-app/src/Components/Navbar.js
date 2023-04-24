@@ -4,22 +4,14 @@ export default function Navbar() {
     return (
       <nav className="navigation">
         <Link to="/" className="brand-name">
-          Schedlr
+          Schedulr
         </Link>
         <div
           className="navigation-menu">
           <ul>
-            {/* <li>
-              <a href="/home">Home</a>
-            </li>
-            <li>
-              <a href="/calendar">Calendar</a>
-            </li>
-            <li>
-              <a href="/login">Login</a>
-            </li> */}
             <CustomLink to="/home">Home</CustomLink>
             <CustomLink to="/calendar">Calendar</CustomLink>
+            <CustomLink to="/courses">Courses</CustomLink>
             <CustomLink to="/login">Login</CustomLink>
           </ul>
         </div>
