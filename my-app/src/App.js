@@ -1,30 +1,14 @@
 import Navbar from "./Components/Navbar";
 import { Routes, Route } from 'react-router-dom';
 import "./App.css";
+import Search from './Components/Searchbar';
 
 
 import Home from './Pages/Home';
 import Calendar from './Pages/Calendar';
 import Login from './Pages/Login';
 
-function App() {
-    // let Component
-    // switch(window.location.pathname) {
-    //   case "/":
-    //     Component = Home
-    //     break
-    //   case "/home":
-    //     Component = Home
-    //     break
-    //   case "/calendar":
-    //     Component = Calendar
-    //     break
-    //   case "/login":
-    //     Component = Login
-    //     break
-    // }
-
-   
+function App() { 
     return (
       <>
         <Navbar />
@@ -36,6 +20,7 @@ function App() {
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/login" element={<Login />} />
           </Routes>
+          <Search />
         </div>
        
       </>
