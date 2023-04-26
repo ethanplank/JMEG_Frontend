@@ -10,9 +10,6 @@ const Searchbar = () => {
     event.preventDefault();
     axios.get(  `http://localhost:8080/search?code=${query}`)
       .then((response) => {
-        console.log(response);
-        console.log(response.data[0].crs_code);
-
         const data = response.data;
 
         const dataMap = data.map((d) => <li key={d.crs_code}>{d.crs_code}</li>);
