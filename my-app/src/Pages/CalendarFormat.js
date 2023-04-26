@@ -25,6 +25,9 @@ const CalendarFormat = () => {
     return (
       <div>
         <Calendar
+          min={new Date(0,0,0,8,0,0)}
+          max={new Date(0,0,0,21,0,0)}
+          step={15}
           localizer={localizer}
           events={events}
           startAccessor="start"
