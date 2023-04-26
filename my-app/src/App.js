@@ -8,6 +8,7 @@ import Search from './Pages/Search';
 import Calendar from './Pages/Calendar';
 import Login from './Pages/Login';
 import Courses from './Pages/Courses';
+import Home from './Pages/Home';
 
 
 
@@ -18,7 +19,7 @@ function App() {
         <div className="container">
           {/* <Component /> */}
           <Routes>
-            <Route path="/" element={<Search />} />
+            <Route path="/" element={<Home />} />
             <Route path="/search" element={<Search />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/login" element={<Login />} />
