@@ -14,8 +14,16 @@ const Searchbar = () => {
         const data = response.data;
 
         //const dataMap = data.map((d) => <li key={d.crs_code}>{d.crs_code}</li>);
-        const dataMap = data.map((d) => <dir id="icon"><table><tr><dir><dir key={d.crs_title}>{d.crs_title}</dir><li key={d.crs_code}>Course code: {d.crs_code}</li><li key={d.credit_hrs}>Credit Hours: {d.credit_hrs}</li><button>Add Class</button></dir></tr></table><input size= "50" type="checkbox"></input>
-        </dir>);
+        const dataMap = data.map((d) => 
+        <div id="icon"><table><tr><div>
+          <dir key={d.crs_title}>{d.crs_title}</dir>
+          <li key={d.crs_code}>Course code: {d.crs_code}</li>
+          <li key={d.credit_hrs}>Credit Hours: {d.credit_hrs}</li>
+          <p></p>
+          <button size="50">Add This Class</button>
+          </div></tr></table>
+          <input size= "50" type="checkbox"></input>
+        </div>);
        // setResponse(dataTitles);
         setResponse(dataMap);
       })
@@ -43,8 +51,9 @@ e.onmouseout = function() {
   document.getElementById('info').style.display = 'none'
 }
 </script> */}
+<div><button size="200">Add selected courses</button></div>
     </div>
-    
+      
   );
 };
 
