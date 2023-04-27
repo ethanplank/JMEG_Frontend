@@ -10,10 +10,12 @@ const Searchbar = () => {
     event.preventDefault();
     axios.get(  `http://localhost:8080/search?code=${query}`)
       .then((response) => {
+        console.log(response);
         const data = response.data;
 
-        const dataMap = data.map((d) => <li key={d.crs_code}>{d.crs_code}</li>);
-        
+        //const dataMap = data.map((d) => <li key={d.crs_code}>{d.crs_code}</li>);
+        const dataMap = data.map((d) => <table><row key={d.crs_title}>{d.crs_title}</row></table>);
+       // setResponse(dataTitles);
         setResponse(dataMap);
       })
       .catch((error) => {
@@ -29,7 +31,8 @@ const Searchbar = () => {
         <input type="text" id="search" value={query} onChange={(event) => setQuery(event.target.value)} />
         <button type="submit">Search</button>
       </form>
-      {response && <div className="response">{response}</div>}
+      {response && <dir className="response">{response}</dir>}
+    
     </div>
   );
 };
