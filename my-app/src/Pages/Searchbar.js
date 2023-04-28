@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import "./Searchbar.css";
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 const Searchbar = () => {
   const [query, setQuery] = useState('');
@@ -24,6 +25,9 @@ const Searchbar = () => {
           <p>Hello world</p>
           </div>          
           <button size="50">Add This Class</button>
+          <Link to={`http://localhost:8080/courseDetails?code=${d.crs_code}`}>
+              <button>View Details</button>
+          </Link>          
           </div></tr></table>
           <input size= "50" type="checkbox"></input>
           <script type="text/javascript">
@@ -46,6 +50,7 @@ const Searchbar = () => {
         <input type="text" id="search" value={query} onChange={(event) => setQuery(event.target.value)} />
         <button type="submit">Search</button>
       </form>
+
       {response && <dir className="response">{response}</dir>}
       
 {/* <script>
