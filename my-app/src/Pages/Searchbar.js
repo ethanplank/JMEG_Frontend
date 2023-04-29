@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import "./Searchbar.css";
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Popup from "./Popup"
 
 const Searchbar = () => {
   const [query, setQuery] = useState('');
@@ -25,9 +25,10 @@ const Searchbar = () => {
           <p>Hello world</p>
           </div>          
           <button size="50">Add This Class</button>
-          <Link to={`http://localhost:8080/courseDetails?code=${d.crs_code}`}>
-              <button>View Details</button>
-          </Link>          
+          {/* <Link to={`http://localhost:8080/courseDetails?code=${d.crs_code}`}> */}
+          {/* <button>View Details</button> */}
+          {/* </Link>           */}
+          <Popup query="d.crs_code"></Popup>
           </div></tr></table>
           <input size= "50" type="checkbox"></input>
           <script type="text/javascript">
