@@ -18,12 +18,7 @@ const Searchbar = () => {
         //const dataMap = data.map((d) => <li key={d.crs_code}>{d.crs_code}</li>);
         const dataMap = data.map((d) => 
         <div id="mydiv"><table><tr><div>
-          <dir key={d.crs_title}>{d.crs_title}</dir>
-          <li key={d.crs_code}>Course code: {d.crs_code}</li>
-          <li key={d.credit_hrs}>Credit Hours: {d.credit_hrs}</li>
-          <div>
-            <p>Hello world</p>
-          </div>          
+          <dir key={d.crs_title}>{d.crs_title}</dir>          
           <button size="50">Add This Class</button>
           <Popup query={d.crs_code}></Popup>
           </div></tr></table>
