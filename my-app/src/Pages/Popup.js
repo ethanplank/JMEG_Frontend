@@ -9,6 +9,7 @@ function Popup(props) {
   const handleClick = () => {
     axios.get(`http://localhost:8080/courseDetails?code=${props.query}`)
       .then(response => {
+        console.log(response.data)
         setPopupData(response.data);
         setShowPopup(true);
       })
@@ -22,7 +23,7 @@ function Popup(props) {
       <button onClick={handleClick}>View Details</button>
       {showPopup && popupData !== null &&
         <div>
-          <h2 setQuery>{popupData.crs_title}</h2>
+          <h2 setQuery>{popupData}</h2>
           <button onClick={() => setShowPopup(false)}>Close</button>
         </div>
       }

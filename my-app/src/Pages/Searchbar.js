@@ -22,10 +22,10 @@ const Searchbar = () => {
           <li key={d.crs_code}>Course code: {d.crs_code}</li>
           <li key={d.credit_hrs}>Credit Hours: {d.credit_hrs}</li>
           <div>
-          <p>Hello world</p>
+            <p>Hello world</p>
           </div>          
           <button size="50">Add This Class</button>
-          <Popup query="crs_code"></Popup>
+          <Popup query={d.crs_code}></Popup>
           </div></tr></table>
           <input size= "50" type="checkbox"></input>
           <script type="text/javascript">
