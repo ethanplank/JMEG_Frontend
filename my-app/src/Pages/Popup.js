@@ -23,7 +23,7 @@ function Popup(props) {
       <button onClick={handleClick}>View Details</button>
       {showPopup && popupData !== null &&
         <div>
-          <h2 setQuery>{popupData}</h2>
+          <p setQuery>{popupData}</p>
           <button onClick={() => setShowPopup(false)}>Close</button>
         </div>
       }
