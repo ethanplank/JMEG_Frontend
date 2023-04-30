@@ -25,10 +25,7 @@ const Searchbar = () => {
           <p>Hello world</p>
           </div>          
           <button size="50">Add This Class</button>
-          {/* <Link to={`http://localhost:8080/courseDetails?code=${d.crs_code}`}> */}
-          {/* <button>View Details</button> */}
-          {/* </Link>           */}
-          <Popup query="d.crs_code"></Popup>
+          <Popup query="crs_code"></Popup>
           </div></tr></table>
           <input size= "50" type="checkbox"></input>
           <script type="text/javascript">

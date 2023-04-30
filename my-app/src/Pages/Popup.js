@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function Popup(props) {
+//   const [query, setQuery] = useState('');
   const [showPopup, setShowPopup] = useState(false);
-  const [popupData, setPopupData] = useState('');
+  const [popupData, setPopupData] = useState(null);
 
   const handleClick = () => {
     axios.get(`http://localhost:8080/courseDetails?code=${props.query}`)
@@ -19,9 +20,9 @@ function Popup(props) {
   return (
     <div>
       <button onClick={handleClick}>View Details</button>
-      {showPopup &&
+      {showPopup && popupData !== null &&
         <div>
-          <h2>{popupData.crs_title}</h2>
+          <h2 setQuery>{popupData.crs_title}</h2>
           <button onClick={() => setShowPopup(false)}>Close</button>
         </div>
       }
@@ -30,3 +31,4 @@ function Popup(props) {
 }
 
 export default Popup;
+
