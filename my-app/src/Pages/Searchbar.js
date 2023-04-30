@@ -19,15 +19,15 @@ const Searchbar = () => {
         const dataMap = data.map((d) => 
         <div id="mydiv"><table><tr><div>
           <dir key={d.crs_title}>{d.crs_title}</dir>          
-          <button size="50">Add This Class</button>
+          <button onClick={createFunction(d.crs_code)} size="50">Add This Class</button>
           <Popup query={d.crs_code}></Popup>
           </div></tr></table>
           <input size= "50" type="checkbox"></input>
           <script type="text/javascript">
-   document.getElementById('mydiv').style.visibility='visible';
-</script>
+            document.getElementById('mydiv').style.visibility='visible';
+          </script>
         </div>);
-       // setResponse(dataTitles);
+
         setResponse(dataMap);
       })
       .catch((error) => {
@@ -60,5 +60,27 @@ e.onmouseout = function() {
       
   );
 };
+
+const createFunction = (course_code) => {
+  const currentCourse = course_code;
+
+  const handleAdd = (event) => {
+    event.preventDefault();
+    axios.get(  `http://localhost:8080/addCourse?code=${currentCourse}`)
+      .then((response) => {
+        console.log(response);
+        const data = response.data;
+        if (data === true) {
+          console.log("Add class ran")
+        } else {
+          console.log("Add class ran, but died")
+        }
+      })
+      .catch((error) => {
+        console.log("Add class failed")
+      });
+  }
+  return handleAdd;
+}
 
 export default Searchbar;
