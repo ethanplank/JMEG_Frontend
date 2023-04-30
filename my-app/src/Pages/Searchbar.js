@@ -18,7 +18,8 @@ const Searchbar = () => {
         //const dataMap = data.map((d) => <li key={d.crs_code}>{d.crs_code}</li>);
         const dataMap = data.map((d) => 
         <div id="mydiv"><table><tr><div>
-          <dir key={d.crs_title}>{d.crs_title}</dir>          
+          <dir key={d.crs_title}>{d.crs_title}</dir>
+          <dir key={d.crs_code}>{d.crs_code}</dir>          
           <button onClick={createFunction(d.crs_code)} size="50">Add This Class</button>
           <Popup query={d.crs_code}></Popup>
           </div></tr></table>
