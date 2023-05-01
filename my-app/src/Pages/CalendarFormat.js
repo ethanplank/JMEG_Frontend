@@ -104,6 +104,7 @@ const CalendarFormat = () => {
     return (
       <div>
         <Calendar
+          dayLayoutAlgorithm={'no-overlap'}
           min={new Date(0,0,0,8,0,0)}
           max={new Date(0,0,0,21,0,0)}
           onSelectEvent={onSelectEvent}
