@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Calendar, momentLocalizer } from "react-big-calendar";
+import { Calendar, momentLocalizer, views } from "react-big-calendar";
 import moment from "moment";
 import axios from 'axios';
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -21,8 +21,11 @@ const CalendarFormat = () => {
     //       const endT = course.timeSlot.endTimeCode;
     //       const endH = Math.floor(endT / 60);
     //       const name = course.crs_title;
-    //       const start = new Date(0,0,0,startH,startT%60,0);
-    //       const end = new Date(0,0,0,endH,endT%60,0);
+    //       console.log(startH)
+    //       console.log(startT)
+    //       console.log(endH)
+    //       const start = new Date().toString();
+    //       const end = new Date().setHours(new Date().getHours() + 1).toString();
     //       handleAdd(start, end, name);
     //     };
     //   });
@@ -32,6 +35,8 @@ const CalendarFormat = () => {
   
     const handleSelect = ({ start, end }) => {
       const title = window.prompt("New Event name");
+      console.log(start);
+      console.log(end);
       if (title) {
         setEvents([
           ...events,
@@ -80,9 +85,10 @@ const CalendarFormat = () => {
           events={events}
           startAccessor="start"
           endAccessor="end"
-          //selectable={true}
+          selectable={true}
           onSelectSlot={handleSelect}
-          toolbar={false}
+          views={['work_week', 'agenda']}
+          defaultView="work_week"
         />
       </div>
     );
