@@ -17,23 +17,21 @@ const Searchbar = () => {
 
         //const dataMap = data.map((d) => <li key={d.crs_code}>{d.crs_code}</li>);
         const dataMap = data.map((d) => 
-        <div class="card">
-        <div class="card-body">
-          <h5 class="card-title" key={d.crs_title}>{d.crs_title}</h5>
-        </div>
-        <ul class="list-group list-group-flush">
-        <li class="list-group-item" key={d.crs_code}>Course code: {d.crs_code}</li>
-        <li class="list-group-item" key={d.credit_hrs}>Credit Hours: {d.credit_hrs}</li>
-        <button onClick={createFunction(d.crs_code)} size="50">Add This Class</button>
-        <Popup query={d.crs_code}></Popup>
-        <input size= "50" type="checkbox"></input>  
-        </ul>
-        <div class="card-body">
-        </div>
-        <script type="text/javascript">
-          document.getElementById('mydiv').style.visibility='visible';
-        </script>
-      </div>);
+        <div class="card" >
+          <div class="card-body">
+            <h5 class="card-title" key={d.crs_title}>{d.crs_title}</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" key={d.crs_code}>Course code: {d.crs_code}</li>
+            <li class="list-group-item" key={d.credit_hrs}>Credit Hours: {d.credit_hrs}</li>
+            <button onClick={createFunction(d.crs_code)} size="50">Add This Class</button>
+            <Popup query={d.crs_code}></Popup>
+            <input size= "50" type="checkbox"></input>  
+          </ul>
+          <script type="text/javascript">
+            document.getElementById('mydiv').style.visibility='visible';
+          </script>
+        </div>);
         setResponse(dataMap);
       })
       .catch((error) => {
@@ -50,7 +48,7 @@ const Searchbar = () => {
         <button type="submit">Search</button>
       </form>
 
-      {response && <dir className="response">{response}</dir>}
+      {response && <dir className="response" style={{padding: 10}}>{response}</dir>}
       
 {/* <script>
 var e = document.getElementById('icon');

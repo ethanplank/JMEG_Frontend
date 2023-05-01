@@ -20,7 +20,7 @@ function Popup(props) {
 
   return (
     <div>
-      <button onClick={handleClick}>View Details</button>
+      <button onClick={handleClick} size="50">View Details</button>
       {showPopup && popupData !== null &&
         <div>
           <p setQuery>{popupData}</p>
