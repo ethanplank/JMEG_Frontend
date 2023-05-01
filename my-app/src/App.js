@@ -7,7 +7,6 @@ import "./App.css";
 import Search from './Pages/Search';
 import Calendar from './Pages/Calendar';
 import Login from './Pages/Login';
-import Courses from './Pages/Courses';
 import Home from './Pages/Home';
 
 

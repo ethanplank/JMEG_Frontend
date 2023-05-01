@@ -8,27 +8,26 @@ const localizer = momentLocalizer(moment);
 
 const CalendarFormat = () => {
     const [events, setEvents] = useState([]);
-    const views = {week: true, agenda: true}
 
-    useEffect(() => {
-      // axios.get(`http://localhost:8080/currentSchedule`)
-      //   .then((response) => {
-      //   const data = response.data;
-      //   console.log(data)
-      //   const classes = data.courses
-      //   for (const course of classes) {
-      //     const startT = course.timeSlot.beginTimeCode
-      //     const startH = Math.floor(startT / 60);
-      //     const endT = course.timeSlot.endTimeCode;
-      //     const endH = Math.floor(endT / 60);
-      //     const name = course.crs_title;
-      //     const start = new Date(0,0,0,startH,startT%60,0);
-      //     const end = new Date(0,0,0,endH,endT%60,0);
-      //     handleAdd(start, end, name);
-      //   };
-      // });
-      console.log(events)
-    }, [])
+    // useEffect(() => {
+    //   axios.get(`http://localhost:8080/currentSchedule`)
+    //     .then((response) => {
+    //     const data = response.data;
+    //     console.log(data)
+    //     const classes = data.courses
+    //     for (const course of classes) {
+    //       const startT = course.timeSlot.beginTimeCode
+    //       const startH = Math.floor(startT / 60);
+    //       const endT = course.timeSlot.endTimeCode;
+    //       const endH = Math.floor(endT / 60);
+    //       const name = course.crs_title;
+    //       const start = new Date(0,0,0,startH,startT%60,0);
+    //       const end = new Date(0,0,0,endH,endT%60,0);
+    //       handleAdd(start, end, name);
+    //     };
+    //   });
+    //   console.log(events)
+    // }, [])
 
   
     const handleSelect = ({ start, end }) => {
@@ -76,13 +75,12 @@ const CalendarFormat = () => {
           min={new Date(0,0,0,8,0,0)}
           max={new Date(0,0,0,21,0,0)}
           onSelectEvent={onSelectEvent}
-          views = {views}
           step={15}
           localizer={localizer}
           events={events}
           startAccessor="start"
           endAccessor="end"
-          selectable={true}
+          //selectable={true}
           onSelectSlot={handleSelect}
           toolbar={false}
         />
