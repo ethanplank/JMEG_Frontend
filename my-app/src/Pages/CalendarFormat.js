@@ -11,29 +11,22 @@ const CalendarFormat = () => {
     const views = {week: true, agenda: true}
 
     useEffect(() => {
-      axios.get(`http://localhost:8080/currentSchedule`)
-        .then((response) => {
-        const data = response.data;
-        console.log(data)
-        const classes = data.courses
-        for (const course of classes) {
-          const startT = course.timeSlot.beginTimeCode
-          const startH = startT / 60
-          const startM = startT % 60
-          const endT = course.timeSlot.endTimeCode
-          const endH = endT / 60
-          const endM = endT % 60
-          const name = course.crs_title
-          setEvents([
-            ...events,
-            {
-              startT,
-              endT,
-              name,
-            },
-          ]);
-        };
-      });
+      // axios.get(`http://localhost:8080/currentSchedule`)
+      //   .then((response) => {
+      //   const data = response.data;
+      //   console.log(data)
+      //   const classes = data.courses
+      //   for (const course of classes) {
+      //     const startT = course.timeSlot.beginTimeCode
+      //     const startH = Math.floor(startT / 60);
+      //     const endT = course.timeSlot.endTimeCode;
+      //     const endH = Math.floor(endT / 60);
+      //     const name = course.crs_title;
+      //     const start = new Date(0,0,0,startH,startT%60,0);
+      //     const end = new Date(0,0,0,endH,endT%60,0);
+      //     handleAdd(start, end, name);
+      //   };
+      // });
       console.log(events)
     }, [])
 
@@ -91,6 +84,7 @@ const CalendarFormat = () => {
           endAccessor="end"
           selectable={true}
           onSelectSlot={handleSelect}
+          toolbar={false}
         />
       </div>
     );

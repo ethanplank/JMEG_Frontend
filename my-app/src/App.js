@@ -23,7 +23,6 @@ function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/courses" element={<Courses />} />
           </Routes>
           {/* <Searchbar /> */}
         </div>
