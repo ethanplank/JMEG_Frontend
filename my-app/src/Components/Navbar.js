@@ -28,7 +28,7 @@ export default function Navbar() {
     const resovledPath  = useResolvedPath(to)
     const isActive = useMatch({path: resovledPath.pathname, end: true})
     return (
-      <li className={isActive == to ? "active" : ""}>
+      <li className={isActive === to ? "active" : ""}>
         <Link to={to} {... props}>{children}</Link>
       </li>
     )
