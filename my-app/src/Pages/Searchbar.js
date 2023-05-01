@@ -24,9 +24,10 @@ const Searchbar = () => {
           <ul class="list-group list-group-flush">
             <li class="list-group-item" key={d.crs_code}>Course code: {d.crs_code}</li>
             <li class="list-group-item" key={d.credit_hrs}>Credit Hours: {d.credit_hrs}</li>
-            <button onClick={createFunction(d.crs_code)} size="50">Add This Class</button>
+            <li class="list-group-item" key={d.credit_hrs}>Credit Hours: {d.credit_hrs}</li>
+            <button size="300" onClick={createFunction(d.crs_code)}>Add This Class</button>
             <Popup query={d.crs_code}></Popup>
-            <input size= "50" type="checkbox"></input>  
+            {/* <input size= "50" type="checkbox"></input>   */}
           </ul>
           <script type="text/javascript">
             document.getElementById('mydiv').style.visibility='visible';
@@ -59,7 +60,7 @@ e.onmouseout = function() {
   document.getElementById('info').style.display = 'none'
 }
 </script> */}
-<div><button size="200">Add selected courses</button></div>
+{/* <div><button size="200">Add selected courses</button></div> */}
     </div>
       
   );
