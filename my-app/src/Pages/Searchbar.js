@@ -19,8 +19,6 @@ const Searchbar = () => {
       .then((response) => {
         console.log(response);
         const data = response.data;
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
         //const dataMap = data.map((d) => <li key={d.crs_code}>{d.crs_code}</li>);
         const dataMap = data.map((d) => 
         <div class="card" >
@@ -28,15 +26,7 @@ const Searchbar = () => {
             <h5 class="card-title" key={d.crs_title}>{d.crs_title}: {d.crs_code}</h5>
           </div>
           <ul class="list-group list-group-flush">
-            {/* <li class="list-group-item" key={d.credit_hrs}>Credit Hours: {d.credit_hrs}</li> */}
-
             <button type="button" class="btn btn-sm btn-primary" onClick={createFunction(d.crs_code)}>Add This Class</button>
-            {/* <div class="alert alert-success" role="alert">
-              This is a success alert—check it out!
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-  <span aria-hidden="true">&times;</span>
-</button>
-            </div> */}
             <button type="button"class="btn btn-sm btn-secondary" onClick={createRemove(d.crs_code)}>Remove This Class</button>
             <Popup query={d.crs_code}></Popup>
           </ul>
@@ -61,6 +51,7 @@ const Searchbar = () => {
           const data = response.data;
           setSuccesfulAdd(data)
           if (data === true) {
+            document.getElementById("myPopup").style.display="inline";
             console.log("Add class ran")
           } else {
             console.log("Add class ran, but died")
@@ -82,6 +73,7 @@ const Searchbar = () => {
           const data = response.data;
           console.log(data);
           if (data === true) {
+            document.getElementById("myPopup").style.display="none";
             console.log("Removed Course Succesfully");
           } else {
             console.log("Remove Course ran but returned False");
@@ -123,39 +115,29 @@ const closePopup = ()=>{
  var popup = document.getElementById("myPopup");
  popup.style.display="none";
 }
-const removeCourse= (course_code) =>{
-  const currentCourse=course_code;
-  console.log("Removed course");
-  console.log(currentCourse);
-
-  const handleAdd= (event) =>{
-    event.preventDefault();
-    //do axios crap here
-  }
-}
 
 
-const createFunction = (course_code) => {
-  const currentCourse = course_code;
-  const handleAdd = (event) => {
-    event.preventDefault();
-    axios.get(  `http://localhost:8080/addCourse?code=${currentCourse}`)
-      .then((response) => {
-        console.log(response);
-        const data = response.data;
-        if (data === true) {
-          var popup = document.getElementById("myPopup");
-          popup.style.display="inline";
-          console.log("Add class ran")
-        } else {
-          console.log("Add class ran, but died")
-        }
-      })
-      .catch((error) => {
-        console.log("Add class failed")
-      });
-  }
-  return handleAdd;
-}
+
+//  const createFunction = (course_code) => {
+//   const currentCourse = course_code;
+//   const handleAdd = (event) => {
+//     event.preventDefault();
+//     axios.get(  `http://localhost:8080/addCourse?code=${currentCourse}`)
+//       .then((response) => {
+//         console.log(response);
+//         const data = response.data;
+//         if (data === true) {
+//           document.getElementById("myPopup").style.display="inline";
+//           console.log("Add class ran")
+//         } else {
+//           console.log("Add class ran, but died")
+//         }
+//       })
+//       .catch((error) => {
+//         console.log("Add class failed")
+//       });
+//   }
+//   return handleAdd;
+// }
 
 export default Searchbar;
