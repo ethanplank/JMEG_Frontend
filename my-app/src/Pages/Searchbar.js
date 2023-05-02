@@ -4,6 +4,7 @@ import "./Searchbar.css";
 import Popup from "./Popup"
 
 
+
 const Searchbar = () => {
   const [query, setQuery] = useState('');
   const [response, setResponse] = useState('');
@@ -26,12 +27,12 @@ const Searchbar = () => {
 
             <button type="button" class="btn btn-sm btn-primary" onClick={createFunction(d.crs_code)} >Add This Class</button>
              <div class="alert alert-success" role="alert">
-              This is a success alert—check it out!
+            Succesfully addded course!
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
   <span aria-hidden="true">&times;</span>
 </button>
             </div> 
-            <button type="button"class="btn btn-sm btn-secondary">Remove This Class</button>
+            <button type="button"class="btn btn-sm btn-secondary" onClick={removeCourse(d.crs_code)}>Remove This Class</button>
             <Popup query={d.crs_code}></Popup>
           </ul>
           <script type="text/javascript">
@@ -61,7 +62,16 @@ const Searchbar = () => {
       
   );
 };
+const removeCourse= (course_code) =>{
+  const currentCourse=course_code;
+  console.log("Removed course");
+  console.log(currentCourse);
 
+  const handleAdd= (event) =>{
+    event.preventDefault();
+    //do axios crap here
+  }
+}
 
 const createFunction = (course_code) => {
   const currentCourse = course_code;
