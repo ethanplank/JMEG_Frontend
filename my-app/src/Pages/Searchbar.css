@@ -1,3 +1,6 @@
-myPopup {
+#myPopup {
     display: none;
+  }
+  #popupShow {
+    display: inline;
   }

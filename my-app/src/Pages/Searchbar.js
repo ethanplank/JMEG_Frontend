@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import "./Searchbar.css";
 import Popup from "./Popup"
-
+import * as $ from 'jquery';
 
 
 const Searchbar = () => {
@@ -16,7 +16,6 @@ const Searchbar = () => {
       .then((response) => {
         console.log(response);
         const data = response.data;
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         const dataMap = data.map((d) => 
         <div class="card" >
           <div class="card-body">
@@ -26,12 +25,6 @@ const Searchbar = () => {
             {/* <li class="list-group-item" key={d.credit_hrs}>Credit Hours: {d.credit_hrs}</li> */}
 
             <button type="button" class="btn btn-sm btn-primary" onClick={createFunction(d.crs_code)} >Add This Class</button>
-             <div class="alert alert-success" id="myPopup" role="alert">
-            Succesfully addded course!
-              <button type="button" class="close" data-dismiss="alert" onClick={closePopup} aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-              </button>
-            </div> 
             <button type="button"class="btn btn-sm btn-secondary" onClick={removeCourse(d.crs_code)}>Remove This Class</button>
             <Popup query={d.crs_code}></Popup>
           </ul>
@@ -48,6 +41,13 @@ const Searchbar = () => {
 
   return (
     <div>
+      <div class="alert alert-success" id="myPopup" role="alert">
+            Succesfully addded course!
+              <button type="button" class="close" data-dismiss="alert" onClick={closePopup} aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+            </div> 
+
       <form onSubmit={handleSearch}>
         {error && <div className="error">{error}</div>}
         <label htmlFor="search">Search:</label>
@@ -62,6 +62,7 @@ const Searchbar = () => {
       
   );
 };
+
 const closePopup = ()=>{
  var popup = document.getElementById("myPopup");
  popup.style.display="none";
@@ -76,6 +77,7 @@ const removeCourse= (course_code) =>{
     //do axios crap here
   }
 }
+
 
 const createFunction = (course_code) => {
   const currentCourse = course_code;
