@@ -28,7 +28,7 @@ const Searchbar = () => {
             {/* <li class="list-group-item" key={d.credit_hrs}>Credit Hours: {d.credit_hrs}</li> */}
 
             <button type="button" class="btn btn-sm btn-primary" onClick={createFunction(d.crs_code)}>Add This Class</button>
-            <button type="button"class="btn btn-sm btn-secondary" onClick={createRemove(d.crs_code)}>Remove This Class</button>
+            <button type="button"class="btn btn-sm btn-secondary" onClick={removeCourse(d.crs_code)} onClick={createRemove(d.crs_code)}>Remove This Class</button>
             <Popup query={d.crs_code}></Popup>
           </ul>
           <script type="text/javascript">
