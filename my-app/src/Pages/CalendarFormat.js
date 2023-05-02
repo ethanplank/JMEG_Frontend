@@ -9,28 +9,55 @@ const localizer = momentLocalizer(moment);
 const CalendarFormat = () => {
     const [events, setEvents] = useState([]);
 
-    // useEffect(() => {
-    //   axios.get(`http://localhost:8080/currentSchedule`)
-    //     .then((response) => {
-    //     const data = response.data;
-    //     console.log(data)
-    //     const classes = data.courses
-    //     for (const course of classes) {
-    //       const startT = course.timeSlot.beginTimeCode
-    //       const startH = Math.floor(startT / 60);
-    //       const endT = course.timeSlot.endTimeCode;
-    //       const endH = Math.floor(endT / 60);
-    //       const name = course.crs_title;
-    //       console.log(startH)
-    //       console.log(startT)
-    //       console.log(endH)
-    //       const start = new Date().toString();
-    //       const end = new Date().setHours(new Date().getHours() + 1).toString();
-    //       handleAdd(start, end, name);
-    //     };
-    //   });
-    //   console.log(events)
-    // }, [])
+    useEffect(() => {
+      axios.get(`http://localhost:8080/currentSchedule`)
+        .then((response) => {
+        const data = response.data;
+        console.log(data)
+        const classes = data.courses
+        let eventList = []
+        for (const course of classes) {
+          const startT = course.timeSlot.beginTimeCode
+          const startH = Math.floor(startT / 60);
+          const startM = startT % 60;
+          const endT = course.timeSlot.endTimeCode;
+          const endH = Math.floor(endT / 60);
+          const endM = endT % 60;
+          const name = course.crs_title;
+          const timeSlot = course.timeSlot;
+          let days = []
+          if (timeSlot.onMonday) {
+            days.push(1)
+          }
+          if (timeSlot.onTuesday) {
+            days.push(2)
+          }
+          if (timeSlot.onWednesday) {
+            days.push(3)
+          }
+          if (timeSlot.onThursday) {
+            days.push(4)
+          }
+          if (timeSlot.onFriday) {
+            days.push(5)
+          }
+          for (const day of days) {
+            let newEvent = {
+              title: name,
+              start: moment().day(day).hour(startH).minute(startM).toDate(),
+              end: moment().day(day).hour(endH).minute(endM).toDate()
+            };
+            eventList.push(newEvent)
+          }
+        }
+        
+        setEvents([
+          ...events,
+          ...eventList
+        ]);
+      });
+      console.log(events)
+    }, [])
 
   
     const handleSelect = ({ start, end }) => {
@@ -77,6 +104,7 @@ const CalendarFormat = () => {
     return (
       <div>
         <Calendar
+          dayLayoutAlgorithm={'no-overlap'}
           min={new Date(0,0,0,8,0,0)}
           max={new Date(0,0,0,21,0,0)}
           onSelectEvent={onSelectEvent}

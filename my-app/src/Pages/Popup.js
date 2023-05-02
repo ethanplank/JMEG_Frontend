@@ -20,11 +20,12 @@ function Popup(props) {
 
   return (
     <div>
-      <button onClick={handleClick} size="50">View Details</button>
+      <button type="button" class="btn btn-light" onClick={handleClick} size="50">View Details</button>
       {showPopup && popupData !== null &&
         <div>
           <p setQuery>{popupData}</p>
-          <button onClick={() => setShowPopup(false)}>Close</button>
+          <button type="button" class="btn btn-secondary" onClick={() => setShowPopup(false)}>Close</button>
+
         </div>
       }
     </div>

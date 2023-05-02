@@ -3,6 +3,7 @@ import axios from 'axios';
 import "./Searchbar.css";
 import Popup from "./Popup"
 
+
 const Searchbar = () => {
   const [query, setQuery] = useState('');
   const [response, setResponse] = useState('');
@@ -14,20 +15,26 @@ const Searchbar = () => {
       .then((response) => {
         console.log(response);
         const data = response.data;
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
         //const dataMap = data.map((d) => <li key={d.crs_code}>{d.crs_code}</li>);
         const dataMap = data.map((d) => 
         <div class="card" >
           <div class="card-body">
-            <h5 class="card-title" key={d.crs_title}>{d.crs_title}</h5>
+            <h5 class="card-title" key={d.crs_title}>{d.crs_title}: {d.crs_code}</h5>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item" key={d.crs_code}>Course code: {d.crs_code}</li>
-            <li class="list-group-item" key={d.credit_hrs}>Credit Hours: {d.credit_hrs}</li>
-            <li class="list-group-item" key={d.credit_hrs}>Credit Hours: {d.credit_hrs}</li>
-            <button size="300" onClick={createFunction(d.crs_code)}>Add This Class</button>
+            {/* <li class="list-group-item" key={d.credit_hrs}>Credit Hours: {d.credit_hrs}</li> */}
+
+            <button type="button" class="btn btn-sm btn-primary" onClick={createFunction(d.crs_code)} >Add This Class</button>
+            {/* <div class="alert alert-success" role="alert">
+              This is a success alert—check it out!
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+            </div> */}
+            <button type="button"class="btn btn-sm btn-secondary">Remove This Class</button>
             <Popup query={d.crs_code}></Popup>
-            {/* <input size= "50" type="checkbox"></input>   */}
           </ul>
           <script type="text/javascript">
             document.getElementById('mydiv').style.visibility='visible';
@@ -45,8 +52,14 @@ const Searchbar = () => {
       <form onSubmit={handleSearch}>
         {error && <div className="error">{error}</div>}
         <label htmlFor="search">Search:</label>
-        <input type="text" id="search" value={query} onChange={(event) => setQuery(event.target.value)} />
-        <button type="submit">Search</button>
+        <div class="input-group input-group-lg">
+  <div class="input-group-prepend">
+    {/* <span class="input-group-text" id="inputGroup-sizing-lg" type="submit">Large</span> */}
+  </div>
+  <input type="text" class="form-control" aria-label="Large" placeholder="Search by course code, course title, time" aria-describedby="inputGroup-sizing-sm" value={query} onChange={(event) => setQuery(event.target.value)}/>
+</div>
+        {/* <input type="text" id="search" value={query} onChange={(event) => setQuery(event.target.value)} />
+        <button type="submit">Search</button> */}
       </form>
 
       {response && <dir className="response" style={{padding: 10}}>{response}</dir>}
@@ -66,9 +79,9 @@ e.onmouseout = function() {
   );
 };
 
+
 const createFunction = (course_code) => {
   const currentCourse = course_code;
-
   const handleAdd = (event) => {
     event.preventDefault();
     axios.get(  `http://localhost:8080/addCourse?code=${currentCourse}`)
