@@ -1,14 +1,66 @@
 import React, {Fragment} from 'react';
-import Schedule from './Schedule'
+import { useState } from 'react';
+import { useEffect } from 'react';
+import ScheduleCard from '../Components/ScheduleCard'
+import AddScheduleCard from '../Components/AddScheduleCard'
+import axios from 'axios';
+
 
 export default function Home(){
+    const [scheduleCards, setScheduleCards] = useState([]);
+
+    useEffect(() => {
+      axios.get(`http://localhost:8080/scheduleList/`)
+      .then((response) => {
+        console.log(response)
+        const data = response.data
+        let dataVals = []
+        for (const val of data) {
+          const newSchedule = {
+            title: val.title
+          }
+          dataVals.push(newSchedule)
+        }
+
+        setScheduleCards([
+          ...scheduleCards,
+          ...dataVals,
+        ]);
+      })
+    },[]) 
+    // const getSchedules = (event) => {
+    //   event.preventDefault();
+    //   axios.get(`http://localhost:8080/scheduleList`)
+    //     .then((response) => {
+    //       console.log(response.data);
+    //       setSchduleCard = response.data;
+    //       // console.log(response.data[0].title);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //       console.log("There's and error");
+    //     });
+    // };
+    const showScheduleCards = true;
     return (
-        <Fragment>
-           <h1>Home</h1>
-           <p>Welcom to our App! This page is currently WIP. To add courses, select search in top right.
-           </p>
-           <Schedule />
-        </Fragment>
-        
-      )
+      <div>
+      {showScheduleCards ? (
+        <>
+          <div>
+            {scheduleCards.map((scheduleCard) => {
+              console.log(scheduleCard);
+              return (
+                <ScheduleCard title={scheduleCard.title}/>
+              );
+            })}
+          </div>
+        </>
+      ) : (
+        <p>You can't see the schedules</p>
+      )}
+        <>
+          <AddScheduleCard />
+        </>
+      </div>
+    )
 }

@@ -9,6 +9,9 @@ const Searchbar = () => {
   const [query, setQuery] = useState('');
   const [response, setResponse] = useState('');
   const [error, setError] = useState('');
+  const [succesfulAdd, setSuccesfulAdd] = useState(false);
+
+
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -24,8 +27,8 @@ const Searchbar = () => {
           <ul class="list-group list-group-flush">
             {/* <li class="list-group-item" key={d.credit_hrs}>Credit Hours: {d.credit_hrs}</li> */}
 
-            <button type="button" class="btn btn-sm btn-primary" onClick={createFunction(d.crs_code)} >Add This Class</button>
-            <button type="button"class="btn btn-sm btn-secondary" onClick={removeCourse(d.crs_code)}>Remove This Class</button>
+            <button type="button" class="btn btn-sm btn-primary" onClick={createFunction(d.crs_code)}>Add This Class</button>
+            <button type="button"class="btn btn-sm btn-secondary" onClick={removeCourse(d.crs_code)} onClick={createRemove(d.crs_code)}>Remove This Class</button>
             <Popup query={d.crs_code}></Popup>
           </ul>
           <script type="text/javascript">
@@ -37,6 +40,50 @@ const Searchbar = () => {
       .catch((error) => {
         setError('Failed to retrieve search results.');
       });
+  };
+
+  const createFunction = (course_code) => {
+    const currentCourse = course_code;
+    const handleAdd = (event) => {
+      event.preventDefault();
+      axios.get(  `http://localhost:8080/addCourse?code=${currentCourse}`)
+        .then((response) => {
+          console.log(response);
+          const data = response.data;
+          setSuccesfulAdd(data)
+          if (data === true) {
+            console.log("Add class ran")
+          } else {
+            console.log("Add class ran, but died")
+          }
+        })
+        .catch((error) => {
+          console.log("Add class failed")
+        });
+    }
+    return handleAdd;
+  };
+
+  const createRemove = (course_code) => {
+    const currentCode = course_code;
+    const handleRemove = (event) => {
+      event.preventDefault();
+      axios.get(`http://localhost:8080/removeCourse?code=${currentCode}`)
+        .then((response) => {
+          const data = response.data;
+          console.log(data);
+          if (data === true) {
+            console.log("Removed Course Succesfully");
+          } else {
+            console.log("Remove Course ran but returned False");
+          }
+        })
+        .catch((error) => {
+          console.log("Remove Course failed")
+        })
+    }
+  
+    return handleRemove;
   };
 
   return (
