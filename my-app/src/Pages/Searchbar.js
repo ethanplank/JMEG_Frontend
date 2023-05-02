@@ -56,7 +56,7 @@ const Searchbar = () => {
   <div class="input-group-prepend">
     {/* <span class="input-group-text" id="inputGroup-sizing-lg" type="submit">Large</span> */}
   </div>
-  <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" value={query} onChange={(event) => setQuery(event.target.value)}/>
+  <input type="text" class="form-control" aria-label="Large" placeholder="Search by course code, course title, time" aria-describedby="inputGroup-sizing-sm" value={query} onChange={(event) => setQuery(event.target.value)}/>
 </div>
         {/* <input type="text" id="search" value={query} onChange={(event) => setQuery(event.target.value)} />
         <button type="submit">Search</button> */}
