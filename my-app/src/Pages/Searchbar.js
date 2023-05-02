@@ -51,8 +51,9 @@ const Searchbar = () => {
           const data = response.data;
           setSuccesfulAdd(data)
           if (data === true) {
-            document.getElementById("myPopup").style.display="inline";
             console.log("Add class ran")
+            document.getElementById("addCourseSuccess").style.display="inline";
+
           } else {
             console.log("Add class ran, but died")
           }
@@ -73,8 +74,8 @@ const Searchbar = () => {
           const data = response.data;
           console.log(data);
           if (data === true) {
-            document.getElementById("myPopup").style.display="none";
             console.log("Removed Course Succesfully");
+            document.getElementById("removeCourseSuccess").style.display="inline";
           } else {
             console.log("Remove Course ran but returned False");
           }
@@ -89,8 +90,14 @@ const Searchbar = () => {
 
   return (
     <div>
-      <div class="alert alert-success" id="myPopup" role="alert">
-            Succesfully addded course!
+      <div class="alert alert-success" id="addCourseSuccess" role="alert">
+            Succesfully addded course
+              <button type="button" class="close" data-dismiss="alert" onClick={closePopup} aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+      <div class="alert alert-success" id="removeCourseSuccess" role="alert">
+            Succesfully removed course
               <button type="button" class="close" data-dismiss="alert" onClick={closePopup} aria-label="Close">
               <span aria-hidden="true">&times;</span>
               </button>
@@ -112,8 +119,9 @@ const Searchbar = () => {
 };
 
 const closePopup = ()=>{
- var popup = document.getElementById("myPopup");
- popup.style.display="none";
+ document.getElementById("addCourseSuccess").style.display="none";
+ document.getElementById("removeCourseSuccess").style.display="none";
+
 }
 
 

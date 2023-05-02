@@ -1,6 +1,6 @@
-#myPopup {
+#addCourseSuccess {
     display: none;
   }
-  #popupShow {
-    display: inline;
-  }
+#removeCourseSucess{
+    display:none;
+}
