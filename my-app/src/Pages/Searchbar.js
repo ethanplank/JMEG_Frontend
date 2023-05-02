@@ -64,10 +64,7 @@ const Searchbar = () => {
 };
 const closePopup = ()=>{
  var popup = document.getElementById("myPopup");
- console.log("Popup"+ popup);
- console.log(popup.checkVisibility());
  popup.style.display="none";
- popup.setAttribute("visibility", "hidden");
 }
 const removeCourse= (course_code) =>{
   const currentCourse=course_code;
@@ -89,6 +86,8 @@ const createFunction = (course_code) => {
         console.log(response);
         const data = response.data;
         if (data === true) {
+          var popup = document.getElementById("myPopup");
+          popup.style.display="inline";
           console.log("Add class ran")
         } else {
           console.log("Add class ran, but died")
