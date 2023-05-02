@@ -19,15 +19,13 @@ const Searchbar = () => {
         const dataMap = data.map((d) => 
         <div class="card" >
           <div class="card-body">
-            <h5 class="card-title" key={d.crs_title}>{d.crs_title}</h5>
+            <h5 class="card-title" key={d.crs_title}>{d.crs_title}: {d.crs_code}</h5>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item" key={d.crs_code}>Course code: {d.crs_code}</li>
-            <li class="list-group-item" key={d.credit_hrs}>Credit Hours: {d.credit_hrs}</li>
-            <li class="list-group-item" key={d.credit_hrs}>Credit Hours: {d.credit_hrs}</li>
-            <button size="300" onClick={createFunction(d.crs_code)}>Add This Class</button>
+            {/* <li class="list-group-item" key={d.credit_hrs}>Credit Hours: {d.credit_hrs}</li> */}
+            <button type="button" class="btn btn-primary btn-lg btn-block" onClick={createFunction(d.crs_code)}>Add This Class</button>
+            <button type="button" class="btn btn-secondary btn-lg btn-block">Remove This Class</button>
             <Popup query={d.crs_code}></Popup>
-            {/* <input size= "50" type="checkbox"></input>   */}
           </ul>
           <script type="text/javascript">
             document.getElementById('mydiv').style.visibility='visible';
