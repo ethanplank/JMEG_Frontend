@@ -7,20 +7,26 @@ import axios from 'axios';
 
 
 export default function Home(){
-    const [scheduleCards, setScheduleCards] = useState(
-      [
-        {title: "ScheduleHi"},
-        {title: "second Schedule"}
-      ]
-    );
+    const [scheduleCards, setScheduleCards] = useState([]);
 
     useEffect(() => {
       axios.get(`http://localhost:8080/scheduleList/`)
-      .then((response) => response.stringify())
-      .then((data) => {
-        setScheduleCards(data)
-        console.log(data);
-      });
+      .then((response) => {
+        console.log(response)
+        const data = response.data
+        let dataVals = []
+        for (const val of data) {
+          const newSchedule = {
+            title: val.title
+          }
+          dataVals.push(newSchedule)
+        }
+
+        setScheduleCards([
+          ...scheduleCards,
+          ...dataVals,
+        ]);
+      })
     },[]) 
     // const getSchedules = (event) => {
     //   event.preventDefault();
