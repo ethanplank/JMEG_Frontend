@@ -26,11 +26,11 @@ const Searchbar = () => {
             {/* <li class="list-group-item" key={d.credit_hrs}>Credit Hours: {d.credit_hrs}</li> */}
 
             <button type="button" class="btn btn-sm btn-primary" onClick={createFunction(d.crs_code)} >Add This Class</button>
-             <div class="alert alert-success" role="alert">
+             <div class="alert alert-success" id="myPopup" role="alert">
             Succesfully addded course!
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-  <span aria-hidden="true">&times;</span>
-</button>
+              <button type="button" class="close" data-dismiss="alert" onClick={closePopup} aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
             </div> 
             <button type="button"class="btn btn-sm btn-secondary" onClick={removeCourse(d.crs_code)}>Remove This Class</button>
             <Popup query={d.crs_code}></Popup>
@@ -62,6 +62,13 @@ const Searchbar = () => {
       
   );
 };
+const closePopup = ()=>{
+ var popup = document.getElementById("myPopup");
+ console.log("Popup"+ popup);
+ console.log(popup.checkVisibility());
+ popup.style.display="none";
+ popup.setAttribute("visibility", "hidden");
+}
 const removeCourse= (course_code) =>{
   const currentCourse=course_code;
   console.log("Removed course");
