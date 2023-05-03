@@ -82,10 +82,14 @@ const Searchbar = () => {
             document.getElementById("removeCourseSuccess").style.display="inline";
           } else {
             console.log("Remove Course ran but returned False");
+            document.getElementById("removeCourseFail").style.display="inline";
+
           }
         })
         .catch((error) => {
           console.log("Remove Course failed")
+          document.getElementById("removeCourseFail").style.display="inline";
+
         })
     }
   
@@ -112,6 +116,12 @@ const Searchbar = () => {
               <span aria-hidden="true">&times;</span>
               </button>
         </div>
+        <div class="alert alert-danger" id="removeCourseFail" role="alert">
+            Failed to remove course
+              <button type="button" class="close" data-dismiss="alert" onClick={closePopup} aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
       <form onSubmit={handleSearch}>
         {error && <div className="error">{error}</div>}
         <label htmlFor="search">Search:</label>
@@ -131,6 +141,8 @@ const closePopup = ()=>{
  document.getElementById("addCourseSuccess").style.display="none";
  document.getElementById("removeCourseSuccess").style.display="none";
  document.getElementById("addCourseFail").style.display="none";
+ document.getElementById("removeCourseFail").style.display="none";
+
 
 
 }
