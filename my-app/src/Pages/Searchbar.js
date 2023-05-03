@@ -26,7 +26,7 @@ const Searchbar = () => {
             <h5 class="card-title" key={d.crs_title}>{d.crs_title}: {d.crs_code}</h5>
           </div>
           <ul class="list-group list-group-flush">
-            <button type="button" class="btn btn-sm btn-primary" onClick={createFunction(d.crs_code)}>Add This Class</button>
+            <button type="button" class="btn btn-sm btn-primary" id="addButton" onClick={createFunction(d.crs_code)}>Add This Class</button>
             <button type="button"class="btn btn-sm btn-secondary" id="removeButton" disabled onClick={createRemove(d.crs_code)}>Remove This Class</button>
             <Popup query={d.crs_code}></Popup>
           </ul>
@@ -54,7 +54,9 @@ const Searchbar = () => {
             console.log("Add class ran")
             document.getElementById("addCourseSuccess").style.display="inline";
             document.getElementById("removeButton").disabled=false;
+            document.getElementById("addButton").disabled=true;
 
+            
 
           } else {
             console.log("Add class ran, but died")
@@ -72,6 +74,7 @@ const Searchbar = () => {
   };
 
   const createRemove = (course_code) => {
+    console.log("remove courses ran");
     const currentCode = course_code;
     const handleRemove = (event) => {
       event.preventDefault();
@@ -82,6 +85,10 @@ const Searchbar = () => {
           if (data === true) {
             console.log("Removed Course Succesfully");
             document.getElementById("removeCourseSuccess").style.display="inline";
+            document.getElementById("addButton").disabled=false;
+            document.getElementById("removeButton").disabled=true;
+
+
           } else {
             console.log("Remove Course ran but returned False");
           }
