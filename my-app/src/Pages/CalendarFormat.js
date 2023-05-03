@@ -3,6 +3,7 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import axios from 'axios';
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import EventPopup from "./EventPopup";
 
 const localizer = momentLocalizer(moment);
 
@@ -84,23 +85,33 @@ const CalendarFormat = () => {
           start,
           end,
           title,
+         
         },
       ]);
     };
 
     const onSelectEvent = (event) => {
       console.log(event, "Event data");
-      // const r = window.confirm("Would you like to remove this event?")
-      // if(r === true){
+      const r = window.confirm("Would you like to remove "+event.title+"?")
+      if(r === true){
         
-      //   this.setState((prevState, props) => {
-      //     const events = [...prevState.events]
-      //     const idx = events.indexOf(event)
-      //     events.splice(idx, 1);
-      //     return { events };
-      //   });
-      // }
+        axios.get(`http://localhost:8080/removeByTitle?title=${event.title}`)
+        .then((response)=>{
+          const data = response.data 
+          if (data === true){
+            console.log("it worked")
+          }else{
+            console.log("it didnt")
+          }
+        })
+        .catch((error)=>{
+          console.log("it failed")
+        })
+      
+      }
     }
+
+    
   
     return (
       <div>
@@ -118,6 +129,7 @@ const CalendarFormat = () => {
           onSelectSlot={handleSelect}
           views={['work_week', 'agenda']}
           defaultView="work_week"
+          eventComponent={EventPopup}
         />
       </div>
     );

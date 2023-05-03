@@ -124,7 +124,6 @@ const Searchbar = () => {
         </div>
       <form onSubmit={handleSearch}>
         {error && <div className="error">{error}</div>}
-        <label htmlFor="search">Search:</label>
         <div class="input-group input-group-lg">
   <div class="input-group-prepend">  </div>
   <input type="text" class="form-control" aria-label="Large" placeholder="Search by course code, course title, time" aria-describedby="inputGroup-sizing-sm" value={query} onChange={(event) => setQuery(event.target.value)}/>
