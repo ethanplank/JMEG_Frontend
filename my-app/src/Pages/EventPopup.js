@@ -8,7 +8,7 @@ function EventPopup({ event }) {
   const handleClick = () => {
     if (!isOpen) {
       axios
-        .get(`http://localhost:8080/courseDetails?code=${event.query}`)
+        .get(`http://localhost:8080/courseDetailsTitle?title=${event.query}`)
         .then((response) => {
           console.log(response.data);
           setPopupData(response.data);
