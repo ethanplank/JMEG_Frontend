@@ -3,6 +3,7 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import axios from 'axios';
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import EventPopup from "./EventPopup";
 
 const localizer = momentLocalizer(moment);
 
@@ -101,6 +102,8 @@ const CalendarFormat = () => {
       //   });
       // }
     }
+
+    
   
     return (
       <div>
@@ -118,7 +121,7 @@ const CalendarFormat = () => {
           onSelectSlot={handleSelect}
           views={['work_week', 'agenda']}
           defaultView="work_week"
-          
+          eventComponent={EventPopup}
         />
       </div>
     );
