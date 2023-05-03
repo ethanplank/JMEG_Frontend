@@ -83,6 +83,7 @@ const CalendarFormat = () => {
           start,
           end,
           title,
+         
         },
       ]);
     };
@@ -117,6 +118,7 @@ const CalendarFormat = () => {
           onSelectSlot={handleSelect}
           views={['work_week', 'agenda']}
           defaultView="work_week"
+          
         />
       </div>
     );
