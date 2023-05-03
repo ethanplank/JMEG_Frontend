@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Popup from 'reactjs-popup';
 
 function ScheduleCard(schedule) {
     let navigate = useNavigate();
