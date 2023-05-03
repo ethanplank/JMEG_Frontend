@@ -15,6 +15,8 @@ const Calendar = () => {
     .then((response) => {
       const data = response.data;
       setScheduleTitle(data.title)
+      var el = document.getElementsByClassName("rbc-btn-group")[0];
+      el.style.display = "none";
     });
   }, [])
 
@@ -23,11 +25,12 @@ const Calendar = () => {
   return (
     <Fragment>
        <h1>{scheduleTitle}</h1>
-       <CalendarFormat />
+       <CalendarFormat id="fragment" />
     </Fragment>
   
   )
 
   }
+
 
 export default Calendar;
