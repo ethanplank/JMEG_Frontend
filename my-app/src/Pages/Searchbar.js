@@ -27,7 +27,7 @@ const Searchbar = () => {
           </div>
           <ul class="list-group list-group-flush">
             <button type="button" class="btn btn-sm btn-primary" onClick={createFunction(d.crs_code)}>Add This Class</button>
-            <button type="button"class="btn btn-sm btn-secondary" onClick={createRemove(d.crs_code)}>Remove This Class</button>
+            <button type="button"class="btn btn-sm btn-secondary" id="removeButton" disabled onClick={createRemove(d.crs_code)}>Remove This Class</button>
             <Popup query={d.crs_code}></Popup>
           </ul>
           <script type="text/javascript">
@@ -53,6 +53,8 @@ const Searchbar = () => {
           if (data === true) {
             console.log("Add class ran")
             document.getElementById("addCourseSuccess").style.display="inline";
+            document.getElementById("removeButton").disabled=false;
+
 
           } else {
             console.log("Add class ran, but died")
