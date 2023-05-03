@@ -56,9 +56,13 @@ const Searchbar = () => {
 
           } else {
             console.log("Add class ran, but died")
+            document.getElementById("addCourseFail").style.display="inline";
+
           }
         })
         .catch((error) => {
+          document.getElementById("addCourseFail").style.display="inline";
+
           console.log("Add class failed")
         });
     }
@@ -102,7 +106,12 @@ const Searchbar = () => {
               <span aria-hidden="true">&times;</span>
               </button>
             </div> 
-
+            <div class="alert alert-danger" id="addCourseFail" role="alert">
+            Failed to add course
+              <button type="button" class="close" data-dismiss="alert" onClick={closePopup} aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
       <form onSubmit={handleSearch}>
         {error && <div className="error">{error}</div>}
         <label htmlFor="search">Search:</label>
@@ -121,6 +130,8 @@ const Searchbar = () => {
 const closePopup = ()=>{
  document.getElementById("addCourseSuccess").style.display="none";
  document.getElementById("removeCourseSuccess").style.display="none";
+ document.getElementById("addCourseFail").style.display="none";
+
 
 }
 

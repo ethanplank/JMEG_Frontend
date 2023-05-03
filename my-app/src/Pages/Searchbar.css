@@ -4,3 +4,6 @@
 #removeCourseSuccess{
     display:none;
 }
+#addCourseFail{
+  display:none;
+}
