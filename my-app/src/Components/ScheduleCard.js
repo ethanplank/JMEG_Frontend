@@ -26,7 +26,7 @@ function ScheduleCard(schedule) {
     return (
         <Card style={{ width: '18rem' }}>
             <Card.Body>
-                <Card.Img src="./logo192.png"></Card.Img>
+                <Card.Img src="https://s3.amazonaws.com/file.imleagues/Images/Schools/Uploaded/201809/201896104357586f1f749d9908dfbd634e1f4c9fd1376c5.jpg"></Card.Img>
                 <Card.Title>{schedule.title}</Card.Title>
                 <Button onClick={scheduleClicked}>Go to Schedule</Button>
             </Card.Body>
