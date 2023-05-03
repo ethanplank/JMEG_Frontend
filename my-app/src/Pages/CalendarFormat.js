@@ -91,16 +91,23 @@ const CalendarFormat = () => {
 
     const onSelectEvent = (event) => {
       console.log(event, "Event data");
-      // const r = window.confirm("Would you like to remove this event?")
-      // if(r === true){
+      const r = window.confirm("Would you like to remove "+event.title+"?")
+      if(r === true){
         
-      //   this.setState((prevState, props) => {
-      //     const events = [...prevState.events]
-      //     const idx = events.indexOf(event)
-      //     events.splice(idx, 1);
-      //     return { events };
-      //   });
-      // }
+        axios.get(`http://localhost:8080/removeByTitle?title=${event.title}`)
+        .then((response)=>{
+          const data = response.data 
+          if (data === true){
+            console.log("it worked")
+          }else{
+            console.log("it didnt")
+          }
+        })
+        .catch((error)=>{
+          console.log("it failed")
+        })
+      
+      }
     }
 
     
