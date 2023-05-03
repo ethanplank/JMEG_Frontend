@@ -106,6 +106,8 @@ const CalendarFormat = () => {
         .catch((error)=>{
           console.log("it failed")
         })
+
+        window.location.reload()
       
       }
     }
