@@ -30,7 +30,7 @@ export default function CreateScheduleForm() {
     };
 
     const createSchedule = () => {
-        axios.get(`http://localhost:8080/scheduleCreate?title=${title}?semester=${semester}?year=${year}`)
+        axios.get(`http://localhost:8080/scheduleCreate?title=${title}&semester=${semester}&year=${year}`)
             .then((response) => {
                 console.log(response);
                 const data = response.data;
