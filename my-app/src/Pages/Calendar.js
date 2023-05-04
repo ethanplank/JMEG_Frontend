@@ -29,6 +29,12 @@ const Calendar = () => {
       <div>
         <h1 className='header'>{scheduleTitle}</h1>
         <h4 className='header'>{credits}</h4>
+        <container id= "EventPopup" style={{display:"none"}}>
+          <h1>Course Name here</h1>
+          <p>Details here</p>
+          <button>Remove Course</button>
+
+        </container>
       </div>
        
        <CalendarFormat id="fragment" />

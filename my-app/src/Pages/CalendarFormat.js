@@ -92,6 +92,8 @@ const CalendarFormat = () => {
 
     const onSelectEvent = (event) => {
       console.log(event, "Event data");
+      window.scrollTo(0, 0);
+      document.getElementById("EventPopup").style.display="inline";
       const r = window.confirm("Would you like to remove "+event.title+"?")
       if(r === true){
         
