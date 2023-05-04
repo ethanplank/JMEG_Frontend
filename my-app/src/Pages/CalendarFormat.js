@@ -96,6 +96,7 @@ const CalendarFormat = (props) => {
 
       props.setName(event.title)
 
+      //Working now
       axios.get(`http://localhost:8080/getDetailsByName?title=${event.title}`)
       .then((response) =>{
         const data = response.data;
