@@ -10,3 +10,12 @@
 #removeCourseFail{
   display:none;
 }
+#addCourseFailCredit {
+  display: none;
+}
+#addCourseFailOverlap {
+  display: none;
+}
+#addCourseFailAlready{
+  display:none;
+}

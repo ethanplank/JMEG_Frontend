@@ -50,14 +50,22 @@ const Searchbar = () => {
           console.log(response);
           const data = response.data;
           setSuccesfulAdd(data)
-          if (data === true) {
+          if (data === 3) {
             console.log("Add class ran")
             document.getElementById("addCourseSuccess").style.display="inline";
 
-          } else {
+          } else if(data===0){
             console.log("Add class ran, but died")
             document.getElementById("addCourseFail").style.display="inline";
-
+          }else if(data===1){
+            console.log("Course overlap error")
+            document.getElementById("addCourseFailOverlap").style.display="inline";
+          }else if (data===2){
+            console.log("Credits maxxed error")
+            document.getElementById("addCourseFailCredit").style.display="inline";
+          }else if(data===4){
+            console.log("Already have course")
+            document.getElementById("addCourseFailAlready").style.display="inline";
           }
         })
         .catch((error) => {
@@ -116,6 +124,24 @@ const Searchbar = () => {
               <span aria-hidden="true">&times;</span>
               </button>
         </div>
+        <div class="alert alert-danger" id="addCourseFailOverlap" role="alert">
+            Failed to add course due to existing schedule overlaps
+              <button type="button" class="close" data-dismiss="alert" onClick={closePopup} aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+        <div class="alert alert-danger" id="addCourseFailCredit" role="alert">
+            Failed to add course due to the 18 credit limit
+              <button type="button" class="close" data-dismiss="alert" onClick={closePopup} aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+        <div class="alert alert-warning" id="addCourseFailAlready" role="alert">
+            Course already added
+              <button type="button" class="close" data-dismiss="alert" onClick={closePopup} aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
         <div class="alert alert-danger" id="removeCourseFail" role="alert">
             Failed to remove course
               <button type="button" class="close" data-dismiss="alert" onClick={closePopup} aria-label="Close">
@@ -141,6 +167,9 @@ const closePopup = ()=>{
  document.getElementById("removeCourseSuccess").style.display="none";
  document.getElementById("addCourseFail").style.display="none";
  document.getElementById("removeCourseFail").style.display="none";
+ document.getElementById("addCourseFailCredit").style.display="none";
+ document.getElementById("addCourseFailOverlap").style.display="none";
+ document.getElementById("addCourseFailAlready").style.display="none";
 
 
 
