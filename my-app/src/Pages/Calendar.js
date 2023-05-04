@@ -8,6 +8,8 @@ import { dateFnsLocalizer } from 'react-big-calendar';
 const Calendar = () => {
   const [scheduleTitle, setScheduleTitle] = useState('');
   const [credits, setCredits] = useState('');
+  const [courseName, setCourseName] = useState('');
+  const [courseDetails, setCourseDetails] = useState('');
 
   
 
@@ -22,16 +24,44 @@ const Calendar = () => {
     });
   }, [])
 
+  const handleRemove = () => {
+    //DO stuff
+    const r = window.confirm("Would you like to remove "+courseName+"?")
+    if(r === true){
+      
+      axios.get(`http://localhost:8080/removeByTitle?title=${courseName}`)
+      .then((response)=>{
+        const data = response.data 
+        if (data === true){
+          console.log("it worked")
+        }else{
+          console.log("it didnt")
+        }
+      })
+      .catch((error)=>{
+        console.log("it failed")
+      })
+
+      window.location.reload()
+    }
+  }
+
   // setScheduleTitle(newSchedule.title);
 
   return (
     <Fragment>
-      <div >
-        <h1 >{scheduleTitle}</h1>
-        <h4 >Credits: {credits}</h4>
+      <div>
+        <h1 className='header'>{scheduleTitle}</h1>
+        <h4 className='header'>{credits}</h4>
+        <container id= "EventPopup" style={{display:"none"}}>
+          <h1>{courseName}</h1>
+          <p>{courseDetails}</p>
+          <button onClick={handleRemove}>Remove Course</button>
+
+        </container>
       </div>
        
-       <CalendarFormat id="fragment" />
+       <CalendarFormat id="fragment" setName={setCourseName} setDetails={setCourseDetails}/>
     </Fragment>
   
   )

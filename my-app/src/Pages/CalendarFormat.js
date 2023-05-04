@@ -8,7 +8,7 @@ import EventPopup from "./EventPopup";
 const localizer = momentLocalizer(moment);
 
 
-const CalendarFormat = () => {
+const CalendarFormat = (props) => {
     const [events, setEvents] = useState([]);
 
     useEffect(() => {
@@ -92,25 +92,18 @@ const CalendarFormat = () => {
 
     const onSelectEvent = (event) => {
       console.log(event, "Event data");
-      const r = window.confirm("Would you like to remove "+event.title+"?")
-      if(r === true){
-        
-        axios.get(`http://localhost:8080/removeByTitle?title=${event.title}`)
-        .then((response)=>{
-          const data = response.data 
-          if (data === true){
-            console.log("it worked")
-          }else{
-            console.log("it didnt")
-          }
-        })
-        .catch((error)=>{
-          console.log("it failed")
-        })
+      window.scrollTo(0, 0);
 
-        window.location.reload()
+      props.setName(event.title)
+
+      axios.get(`http://localhost:8080/getDetailsByName?title=${event.title}`)
+      .then((response) =>{
+        const data = response.data;
+        console.log(data)
+        props.setDetails(data)
+      })
       
-      }
+      document.getElementById("EventPopup").style.display="inline";
     }
 
     

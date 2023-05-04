@@ -1,3 +1,8 @@
 #rbc-btn-group{
     visibility: hidden;
 }
+
+#EventPopup{
+    display: none;
+    visibility: hidden;
+}
