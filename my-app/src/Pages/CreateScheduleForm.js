@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
@@ -7,10 +8,35 @@ import axios from 'axios';
 
 
 export default function CreateScheduleForm() {
-    const [semester, setSemester] = useState('');
-    const [radioValue, setRadioValue] = useState('1');
-    const [year, setYear] = useState('');
-    const [title, setTitle] = useState('');
+
+    const navigate = useNavigate();
+    const routeChange = () => {
+        let path = '../calendar';
+        navigate(path);
+    }
+
+    const [semester, setSemester] = useState(''),
+        onSemesterToggle = e => ({target:{}}) => setSemester(semester);
+        console.log(semester)
+
+    const [year, setYear] = useState(''),
+        onYearInput = ({target:{value}}) => setYear(value);
+        console.log(year)
+
+    const [title, setTitle] = useState(''),
+        onTitleInput = ({target:{value}}) => setTitle(value);
+        console.log(title)
+        
+    const onFormSubmit = event => {
+        event.preventDefault()
+            setYear(year)
+            setTitle(title)
+            setSemester(semester)
+            createSchedule()
+        };
+
+    const [radioValue, setRadioValue] = useState('1')
+    
 
     const radios = [
         {name: 'Fall', value: '1'},
@@ -19,23 +45,22 @@ export default function CreateScheduleForm() {
 
     const [validated, setValidated] = useState(false);
 
-    const handleSubmit = (event) => {
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-        
-        setValidated(true);
-    };
+    // const [value, setValue] = useState(),
+    //     onInput = ({target:{value}}) => setValue(value),
+    //     onFormSubmit = e => {
+    //       e.preventDefault()
+    //       console.log(value)
+    //       setValue()
+    //     }
 
     const createSchedule = () => {
-        axios.get(`http://localhost:8080/scheduleCreate?title=${title}?semester=${semester}?year=${year}`)
+        axios.get(`http://localhost:8080/scheduleCreate?title=${title}&semester=${semester}&year=${year}`)
             .then((response) => {
                 console.log(response);
                 const data = response.data;
                 if(data === true) {
                     console.log("Schedule succesfully added");
+                    routeChange();
                 } else {
                     console.log("Reached backend, but failed to add");
                 }
@@ -47,13 +72,15 @@ export default function CreateScheduleForm() {
 
     return (
         <>
-        <Form>
+        <Form onSubmit={onFormSubmit}>
             <Form.Group className="mb-3">
                 <Form.Label>Schedule Name</Form.Label>
                 <Form.Control 
                     type="text" 
                     placeholder="Enter a schedule name"
                     required
+                    value={title}
+                    onChange={onTitleInput}
                     />
             </Form.Group>
 
@@ -67,13 +94,14 @@ export default function CreateScheduleForm() {
                     key={idx}
                     id={`radio-${idx}`}
                     type="radio"
-                    variant={idx % 2 ? 'outline-success' : 'outline-warning'}
+                    variant={idx % 2 ? 'outline-success' : 'outline-danger'}
                     name="radio"
-                    value={radio.value}
+                    semester={radio.value}
                     checked={radioValue === radio.value}
                     onChange={(e) => {
                         setRadioValue(e.currentTarget.value)
-                        setSemester(e.currentTarget.name)
+                        onSemesterToggle(e.currentTarget.name)
+                        setSemester(radio.name)
                     }}>
                     {radio.name}
                 </ToggleButton>
@@ -86,6 +114,8 @@ export default function CreateScheduleForm() {
                 type="text" 
                 placeholder="Enter a year"
                 required
+                onChange={onYearInput}
+                value={year}
                 />
             </Form.Group>
 
@@ -96,6 +126,7 @@ export default function CreateScheduleForm() {
                 rows={3} 
                 placeholder="Enter a description"
                 required={false}
+                // value={value}
                 />
             </Form.Group>
 
@@ -104,12 +135,15 @@ export default function CreateScheduleForm() {
                 <Form.Control 
                 type="file" 
                 required={false}
+                // value={value}
                 />
             </Form.Group>
 
             <Button 
                 type="submit"
-                onClick={() => createSchedule()}
+                // onClick={() => {
+        
+                //     }}
                 >
                 Create Schedule!
             </Button>
