@@ -46,7 +46,7 @@ export default function Home(){
       <div>
       {showScheduleCards ? (
         <>
-          <div>
+          <div id="loadedCards">
             {scheduleCards.map((scheduleCard) => {
               console.log(scheduleCard);
               return (
@@ -58,9 +58,9 @@ export default function Home(){
       ) : (
         <p>You can't see the schedules</p>
       )}
-        <>
+        <div id="addCard">
           <AddScheduleCard />
-        </>
+        </div>
       </div>
     )
 }
