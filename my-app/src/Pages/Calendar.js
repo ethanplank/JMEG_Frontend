@@ -28,7 +28,7 @@ const Calendar = () => {
     <Fragment>
       <div>
         <h1 className='header'>{scheduleTitle}</h1>
-        <h4 className='header'>{credits}</h4>
+        <h4 className='header'>Credits: {credits}</h4>
       </div>
        
        <CalendarFormat id="fragment" />
