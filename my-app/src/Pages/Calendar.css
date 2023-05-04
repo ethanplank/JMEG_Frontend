@@ -1,3 +1,7 @@
 #rbc-btn-group{
     visibility: hidden;
 }
+
+.header{
+    display: inline;
+}

@@ -7,6 +7,7 @@ import { dateFnsLocalizer } from 'react-big-calendar';
 
 const Calendar = () => {
   const [scheduleTitle, setScheduleTitle] = useState('');
+  const [credits, setCredits] = useState('');
 
   
 
@@ -15,6 +16,7 @@ const Calendar = () => {
     .then((response) => {
       const data = response.data;
       setScheduleTitle(data.title)
+      setCredits(data.credits)
       var el = document.getElementsByClassName("rbc-btn-group")[0];
       el.style.display = "none";
     });
@@ -24,7 +26,11 @@ const Calendar = () => {
 
   return (
     <Fragment>
-       <h1>{scheduleTitle}</h1>
+      <div>
+        <h1 className='header'>{scheduleTitle}</h1>
+        <h4 className='header'>{credits}</h4>
+      </div>
+       
        <CalendarFormat id="fragment" />
     </Fragment>
   
