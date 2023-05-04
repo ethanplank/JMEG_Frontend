@@ -26,9 +26,9 @@ const Calendar = () => {
 
   return (
     <Fragment>
-      <div>
-        <h1 className='header'>{scheduleTitle}</h1>
-        <h4 className='header'>Credits: {credits}</h4>
+      <div >
+        <h1 >{scheduleTitle}</h1>
+        <h4 >Credits: {credits}</h4>
       </div>
        
        <CalendarFormat id="fragment" />
