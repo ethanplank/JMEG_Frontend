@@ -20,7 +20,7 @@ export default function CreateScheduleForm() {
         console.log(semester)
 
     const [year, setYear] = useState(''),
-        onYearInput = ({target:{value}}) => setYear(value);
+        onYearInput =  e => ({target:{}}) => setYear(year);
         console.log(year)
 
     const [title, setTitle] = useState(''),
@@ -41,6 +41,14 @@ export default function CreateScheduleForm() {
     const radios = [
         {name: 'Fall', value: '1'},
         {name: 'Spring', value: '2'},
+    ]
+
+    const [yearValue, setYearValue] = useState('1')
+
+    const years = [
+        {name: '2018', value: '1'},
+        {name: '2019', value: '2'},
+        {name: '2020', value: '3'}
     ]
 
     const [validated, setValidated] = useState(false);
@@ -85,7 +93,7 @@ export default function CreateScheduleForm() {
             </Form.Group>
 
             <Form.Group className="mb-3">
-                <Form.Label>Semester</Form.Label>
+                <Form.Label>Year</Form.Label>
             </Form.Group>
 
             <ButtonGroup>
@@ -109,15 +117,28 @@ export default function CreateScheduleForm() {
             </ButtonGroup>
 
             <Form.Group className="mb-3">
-                <Form.Label>Year</Form.Label>
-                <Form.Control 
-                type="text" 
-                placeholder="Enter a year"
-                required
-                onChange={onYearInput}
-                value={year}
-                />
+                <Form.Label>Semester</Form.Label>
             </Form.Group>
+
+            <ButtonGroup>
+                {years.map((radio, idx) => (
+                <ToggleButton
+                    key={idx}
+                    id={`radio-${idx}`}
+                    type="radio"
+                    variant={idx % 2 ? 'outline-success' : 'outline-danger'}
+                    name="radio"
+                    year={radio.value}
+                    checked={yearValue === radio.value}
+                    onChange={(e) => {
+                        setYearValue(e.currentTarget.value)
+                        onYearInput(e.currentTarget.name)
+                        setYear(radio.name)
+                    }}>
+                    {radio.name}
+                </ToggleButton>
+                ))}
+            </ButtonGroup>
 
             <Form.Group  className="mb-3">
                 <Form.Label>Schedule Description</Form.Label>
