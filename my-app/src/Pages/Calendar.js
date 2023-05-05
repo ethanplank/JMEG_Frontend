@@ -52,7 +52,7 @@ const Calendar = () => {
     <Fragment>
       <div>
         <h1 className='header'>{scheduleTitle}</h1>
-        <h4 className='header'>{credits}</h4>
+        <h4 className='header'>Total credits: {credits}</h4>
         <container id= "EventPopup" style={{display:"none"}}>
           <h1>{courseName}</h1>
           <p>{courseDetails}</p>
