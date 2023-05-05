@@ -55,7 +55,7 @@ const Calendar = () => {
         <h4 className='header'>Total credits: {credits}</h4>
         <container id= "EventPopup" style={{display:"none"}}>
         <div class="card w-75 border-primary mb-3" id="card">
-  <div class="card-body">
+  <div class="card-body text-primary">
     <h5 class="card-title">{courseName}</h5>
     <p class="card-text">{courseDetails}.</p>
     <a href="#" class="btn btn-secondary" onClick={handleRemove}>Remove Course</a>
