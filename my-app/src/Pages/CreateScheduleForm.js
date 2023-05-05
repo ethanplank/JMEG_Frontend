@@ -38,9 +38,15 @@ export default function CreateScheduleForm() {
     const [radioValue, setRadioValue] = useState('1')
     
 
-    const radios = [
+    const semesters = [
         {name: 'Fall', value: '1'},
         {name: 'Spring', value: '2'},
+    ]
+
+    const years = [
+        {year: '2019', value: '1'},
+        {year: '2020', value: '2'},
+        {year: '2021', value: '3'}
     ]
 
     const [validated, setValidated] = useState(false);
@@ -74,7 +80,7 @@ export default function CreateScheduleForm() {
         <>
         <Form onSubmit={onFormSubmit}>
             <Form.Group className="mb-3">
-                <Form.Label>Schedule Name</Form.Label>
+                <Form.Label>Schedule Name (Required)</Form.Label>
                 <Form.Control 
                     type="text" 
                     placeholder="Enter a schedule name"
@@ -85,11 +91,11 @@ export default function CreateScheduleForm() {
             </Form.Group>
 
             <Form.Group className="mb-3">
-                <Form.Label>Semester</Form.Label>
+                <Form.Label>Semester (Required)</Form.Label>
             </Form.Group>
 
             <ButtonGroup>
-                {radios.map((radio, idx) => (
+                {semesters.map((radio, idx) => (
                 <ToggleButton
                     key={idx}
                     id={`radio-${idx}`}
@@ -97,6 +103,7 @@ export default function CreateScheduleForm() {
                     variant={idx % 2 ? 'outline-success' : 'outline-danger'}
                     name="radio"
                     semester={radio.value}
+                    value={radio.value}
                     checked={radioValue === radio.value}
                     onChange={(e) => {
                         setRadioValue(e.currentTarget.value)
@@ -109,7 +116,7 @@ export default function CreateScheduleForm() {
             </ButtonGroup>
 
             <Form.Group className="mb-3">
-                <Form.Label>Year</Form.Label>
+                <Form.Label>Year (Required)</Form.Label>
                 <Form.Control 
                 type="text" 
                 placeholder="Enter a year"
