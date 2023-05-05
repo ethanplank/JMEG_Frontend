@@ -54,12 +54,14 @@ const Calendar = () => {
         <h1 className='header'>{scheduleTitle}</h1>
         <h4 className='header'>Total credits: {credits}</h4>
         <container id= "EventPopup" style={{display:"none"}}>
-          <h1>{courseName}</h1>
-          <p>{courseDetails}</p>
-          <button onClick={handleRemove}>Remove Course</button>
-
-        </container>
-      </div>
+        <div class="card w-75">
+  <div class="card-body">
+    <h5 class="card-title">{courseName}</h5>
+    <p class="card-text">{courseDetails}.</p>
+    <a href="#" class="btn btn-secondary" onClick={handleRemove}>Remove Course</a>
+  </div>
+</div>
+</container></div>
        
        <CalendarFormat id="fragment" setName={setCourseName} setDetails={setCourseDetails}/>
     </Fragment>
