@@ -15,7 +15,7 @@ export default function CreateScheduleForm() {
         navigate(path);
     }
 
-    const [semester, setSemester] = useState(''),
+    const [semester, setSemester] = useState('Fall'),
         onSemesterToggle = e => ({target:{}}) => setSemester(semester);
         console.log(semester)
 
