@@ -1,0 +1,12 @@
+#rbc-btn-group{
+    visibility: hidden;
+}
+
+#EventPopup{
+    display: none;
+    visibility: hidden;
+}
+#card{
+    background-color: steelblue;
+    color:white;
+}

@@ -119,3 +119,10 @@ label {
 }
 
 
+#addCard{
+  float: left;
+}
+
+#loadedCards{
+  float:left;
+}

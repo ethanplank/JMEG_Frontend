@@ -7,7 +7,8 @@ import EventPopup from "./EventPopup";
 
 const localizer = momentLocalizer(moment);
 
-const CalendarFormat = () => {
+
+const CalendarFormat = (props) => {
     const [events, setEvents] = useState([]);
 
     useEffect(() => {
@@ -91,16 +92,19 @@ const CalendarFormat = () => {
 
     const onSelectEvent = (event) => {
       console.log(event, "Event data");
-      // const r = window.confirm("Would you like to remove this event?")
-      // if(r === true){
-        
-      //   this.setState((prevState, props) => {
-      //     const events = [...prevState.events]
-      //     const idx = events.indexOf(event)
-      //     events.splice(idx, 1);
-      //     return { events };
-      //   });
-      // }
+      window.scrollTo(0, 0);
+
+      props.setName(event.title)
+
+      //Working now
+      axios.get(`http://localhost:8080/getDetailsByName?title=${event.title}`)
+      .then((response) =>{
+        const data = response.data;
+        console.log(data)
+        props.setDetails(data)
+      })
+      
+      document.getElementById("EventPopup").style.display="inline";
     }
 
     

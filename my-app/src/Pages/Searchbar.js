@@ -27,7 +27,6 @@ const Searchbar = () => {
           </div>
           <ul class="list-group list-group-flush">
             <button type="button" class="btn btn-sm btn-primary" onClick={createFunction(d.crs_code)}>Add This Class</button>
-            <button type="button"class="btn btn-sm btn-secondary" onClick={createRemove(d.crs_code)}>Remove This Class</button>
             <Popup query={d.crs_code}></Popup>
           </ul>
           <script type="text/javascript">
@@ -50,15 +49,32 @@ const Searchbar = () => {
           console.log(response);
           const data = response.data;
           setSuccesfulAdd(data)
-          if (data === true) {
+          if (data === 3) {
+            closePopup();
             console.log("Add class ran")
             document.getElementById("addCourseSuccess").style.display="inline";
 
-          } else {
+          } else if(data===0){
+            closePopup();
             console.log("Add class ran, but died")
+            document.getElementById("addCourseFail").style.display="inline";
+          }else if(data===1){
+            closePopup();
+            console.log("Course overlap error")
+            document.getElementById("addCourseFailOverlap").style.display="inline";
+          }else if (data===2){
+            closePopup();
+            console.log("Credits maxxed error")
+            document.getElementById("addCourseFailCredit").style.display="inline";
+          }else if(data===4){
+            closePopup();
+            console.log("Already have course")
+            document.getElementById("addCourseFailAlready").style.display="inline";
           }
         })
         .catch((error) => {
+          document.getElementById("addCourseFail").style.display="inline";
+
           console.log("Add class failed")
         });
     }
@@ -78,10 +94,14 @@ const Searchbar = () => {
             document.getElementById("removeCourseSuccess").style.display="inline";
           } else {
             console.log("Remove Course ran but returned False");
+            document.getElementById("removeCourseFail").style.display="inline";
+
           }
         })
         .catch((error) => {
           console.log("Remove Course failed")
+          document.getElementById("removeCourseFail").style.display="inline";
+
         })
     }
   
@@ -102,12 +122,41 @@ const Searchbar = () => {
               <span aria-hidden="true">&times;</span>
               </button>
             </div> 
-
+            <div class="alert alert-danger" id="addCourseFail" role="alert">
+            Failed to add course
+              <button type="button" class="close" data-dismiss="alert" onClick={closePopup} aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+        <div class="alert alert-danger" id="addCourseFailOverlap" role="alert">
+            Failed to add course due to existing schedule overlaps
+              <button type="button" class="close" data-dismiss="alert" onClick={closePopup} aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+        <div class="alert alert-danger" id="addCourseFailCredit" role="alert">
+            Failed to add course due to the 18 credit limit
+              <button type="button" class="close" data-dismiss="alert" onClick={closePopup} aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+        <div class="alert alert-warning" id="addCourseFailAlready" role="alert">
+            Course already added
+              <button type="button" class="close" data-dismiss="alert" onClick={closePopup} aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+        <div class="alert alert-danger" id="removeCourseFail" role="alert">
+            Failed to remove course
+              <button type="button" class="close" data-dismiss="alert" onClick={closePopup} aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
       <form onSubmit={handleSearch}>
         {error && <div className="error">{error}</div>}
         <div class="input-group input-group-lg">
   <div class="input-group-prepend">  </div>
-  <input type="text" class="form-control" aria-label="Large" placeholder="Search by course code, course title, time" aria-describedby="inputGroup-sizing-sm" value={query} onChange={(event) => setQuery(event.target.value)}/>
+  <input type="text" class="form-control" aria-label="Large" placeholder="Search by course code, course title, time, day" aria-describedby="inputGroup-sizing-sm" value={query} onChange={(event) => setQuery(event.target.value)}/>
 </div>
       </form>
 
@@ -120,6 +169,13 @@ const Searchbar = () => {
 const closePopup = ()=>{
  document.getElementById("addCourseSuccess").style.display="none";
  document.getElementById("removeCourseSuccess").style.display="none";
+ document.getElementById("addCourseFail").style.display="none";
+ document.getElementById("removeCourseFail").style.display="none";
+ document.getElementById("addCourseFailCredit").style.display="none";
+ document.getElementById("addCourseFailOverlap").style.display="none";
+ document.getElementById("addCourseFailAlready").style.display="none";
+
+
 
 }
 
