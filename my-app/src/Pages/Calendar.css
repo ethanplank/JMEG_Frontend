@@ -6,3 +6,7 @@
     display: none;
     visibility: hidden;
 }
+#card{
+    background-color: steelblue;
+    color:white;
+}

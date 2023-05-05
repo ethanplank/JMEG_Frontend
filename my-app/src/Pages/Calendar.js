@@ -54,7 +54,7 @@ const Calendar = () => {
         <h1 className='header'>{scheduleTitle}</h1>
         <h4 className='header'>Total credits: {credits}</h4>
         <container id= "EventPopup" style={{display:"none"}}>
-        <div class="card w-75">
+        <div class="card w-75 text-white bg-primary  mb-3" id="card">
   <div class="card-body">
     <h5 class="card-title">{courseName}</h5>
     <p class="card-text">{courseDetails}.</p>

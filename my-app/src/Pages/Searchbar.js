@@ -50,19 +50,24 @@ const Searchbar = () => {
           const data = response.data;
           setSuccesfulAdd(data)
           if (data === 3) {
+            closePopup();
             console.log("Add class ran")
             document.getElementById("addCourseSuccess").style.display="inline";
 
           } else if(data===0){
+            closePopup();
             console.log("Add class ran, but died")
             document.getElementById("addCourseFail").style.display="inline";
           }else if(data===1){
+            closePopup();
             console.log("Course overlap error")
             document.getElementById("addCourseFailOverlap").style.display="inline";
           }else if (data===2){
+            closePopup();
             console.log("Credits maxxed error")
             document.getElementById("addCourseFailCredit").style.display="inline";
           }else if(data===4){
+            closePopup();
             console.log("Already have course")
             document.getElementById("addCourseFailAlready").style.display="inline";
           }
