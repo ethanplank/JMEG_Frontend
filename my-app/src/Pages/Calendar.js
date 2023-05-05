@@ -45,9 +45,7 @@ const Calendar = () => {
       window.location.reload()
     }
   }
-  const switchSections = () => {
-    document.getElementById("SwitchPopup").style.display="inline";
-  }
+
   // setScheduleTitle(newSchedule.title);
 
   return (
@@ -61,8 +59,6 @@ const Calendar = () => {
     <h5 class="card-title">{courseName}</h5>
     <p class="card-text">{courseDetails}</p>
     <a href="#" class="btn btn-secondary" onClick={handleRemove}>Remove Course</a>
-    <a href="#" class="btn btn-primary" >Switch Sections</a>
-
   </div>
 </div>
 </container></div>
