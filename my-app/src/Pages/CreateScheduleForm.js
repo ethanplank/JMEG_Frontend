@@ -8,7 +8,6 @@ import axios from 'axios';
 
 
 export default function CreateScheduleForm() {
-
     const navigate = useNavigate();
     const routeChange = () => {
         let path = '../calendar';
