@@ -8,7 +8,6 @@ import Search from './Pages/Search';
 import Calendar from './Pages/Calendar';
 import Login from './Pages/Login';
 import Home from './Pages/Home';
-import CreateScheduleForm from './Pages/CreateScheduleForm';
 
 
 
@@ -23,7 +22,6 @@ function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/createScheduleForm" element={<CreateScheduleForm />} />
           </Routes>
           {/* <Searchbar /> */}
         </div>
