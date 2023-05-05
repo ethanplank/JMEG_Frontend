@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
@@ -17,10 +18,6 @@ export default function CreateScheduleForm() {
     const [semester, setSemester] = useState('Fall'),
         onSemesterToggle = e => ({target:{}}) => setSemester(semester);
         console.log(semester)
-
-    const [year, setYear] = useState(''),
-        onYearInput =  e => ({target:{}}) => setYear(year);
-        console.log(year)
 
     const [title, setTitle] = useState(''),
         onTitleInput = ({target:{value}}) => setTitle(value);
@@ -42,23 +39,13 @@ export default function CreateScheduleForm() {
         {name: 'Spring', value: '2'},
     ]
 
-    const [yearValue, setYearValue] = useState('1')
+    const [year, setYear] = useState(['2018', 3])
 
-    const years = [
-        {name: '2018', value: '1'},
-        {name: '2019', value: '2'},
-        {name: '2020', value: '3'}
-    ]
 
-    const [validated, setValidated] = useState(false);
-
-    // const [value, setValue] = useState(),
-    //     onInput = ({target:{value}}) => setValue(value),
-    //     onFormSubmit = e => {
-    //       e.preventDefault()
-    //       console.log(value)
-    //       setValue()
-    //     }
+    const handleYear = (val) => {
+        setYear(val);
+        console.log(val)
+    }
 
     const createSchedule = () => {
         axios.get(`http://localhost:8080/scheduleCreate?title=${title}&semester=${semester}&year=${year}`)
@@ -120,25 +107,17 @@ export default function CreateScheduleForm() {
                 <Form.Label>Semester</Form.Label>
             </Form.Group>
 
-            <ButtonGroup>
-                {years.map((radio, idx) => (
-                <ToggleButton
-                    key={idx}
-                    id={`radio-${idx}`}
-                    type="radio"
-                    variant={idx % 2 ? 'outline-success' : 'outline-danger'}
-                    name="radio"
-                    year={radio.value}
-                    checked={yearValue === radio.value}
-                    onChange={(e) => {
-                        setYearValue(e.currentTarget.value)
-                        onYearInput(e.currentTarget.name)
-                        setYear(radio.name)
-                    }}>
-                    {radio.name}
+            <ToggleButtonGroup type="radio" name="years" onChange={handleYear}>
+                <ToggleButton id="tbg-radio-1" value={'2018'}>
+                    2018
                 </ToggleButton>
-                ))}
-            </ButtonGroup>
+                <ToggleButton id="tbg-radio-2" value={'2019'}>
+                    2019
+                </ToggleButton>
+                <ToggleButton id="tbg-radio-3" value={'2020'}>
+                    2020
+                </ToggleButton>
+            </ToggleButtonGroup>
 
             <Form.Group  className="mb-3">
                 <Form.Label>Schedule Description</Form.Label>
