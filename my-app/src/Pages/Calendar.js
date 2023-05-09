@@ -2,6 +2,7 @@ import React, {Fragment, useState, useEffect} from 'react';
 import CalendarFormat from './CalendarFormat';
 import axios from 'axios';
 import { dateFnsLocalizer } from 'react-big-calendar';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -11,7 +12,8 @@ const Calendar = () => {
   const [courseName, setCourseName] = useState('');
   const [courseDetails, setCourseDetails] = useState('');
 
-  
+  let navigate= useNavigate();
+
 
   useEffect(() => {
     axios.get(`http://localhost:8080/currentSchedule`)
@@ -24,6 +26,23 @@ const Calendar = () => {
     });
   }, [])
 
+  const deleteClick = () => {
+    const confirm = window.confirm("Are you sure you want to delete this Schedule?\nThis action is permenant.")
+    if (confirm === true) {
+      axios.get(`http://localhost:8080/deleteSchedule?title=${scheduleTitle}`)
+      .then((response) => {
+        const data = response.data
+
+        if (data === 0) {
+          console.log("Deletion succesful")
+          const path = "/"
+          navigate(path)
+        } else if (data === 1) {
+          console.log("Couldnt find schedule")
+        }
+      })
+    }
+  }
   const handleRemove = () => {
     //DO stuff
     const r = window.confirm("Would you like to remove "+courseName+"?")
