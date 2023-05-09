@@ -83,7 +83,7 @@ const Calendar = () => {
 </container></div>
        
        <CalendarFormat id="fragment" setName={setCourseName} setDetails={setCourseDetails}/>
-       <button onClick={deleteClick}>Delete Schedule</button>
+       <button type="button" onClick={deleteClick} class="btn btn-danger">Delete Schedule</button>
     </Fragment>
   
   )
