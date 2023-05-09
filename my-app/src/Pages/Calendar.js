@@ -1,6 +1,7 @@
 import React, {Fragment, useState, useEffect} from 'react';
 import CalendarFormat from './CalendarFormat';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { dateFnsLocalizer } from 'react-big-calendar';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,8 +13,8 @@ const Calendar = () => {
   const [courseName, setCourseName] = useState('');
   const [courseDetails, setCourseDetails] = useState('');
 
-  let navigate= useNavigate();
-
+  let navigate = useNavigate()
+  
 
   useEffect(() => {
     axios.get(`http://localhost:8080/currentSchedule`)
@@ -87,8 +88,6 @@ const Calendar = () => {
     </Fragment>
   
   )
-
-  }
-
+}
 
 export default Calendar;
