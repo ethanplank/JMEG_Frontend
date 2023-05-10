@@ -15,7 +15,7 @@ export default function Navbar() {
           <ul>
             <CustomLink to="/search">Search</CustomLink>
             <CustomLink to="/calendar">Calendar</CustomLink>
-            <CustomLink to="/login">Login</CustomLink>
+            {/* <CustomLink to="/login">Login</CustomLink> */}
           </ul>
         </div>
       </nav>
