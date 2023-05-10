@@ -19,3 +19,9 @@
 #addCourseFailAlready{
   display:none;
 }
+#addScheduleFailExist {
+  display: none;
+}
+#addScheduleFailEmpty{
+  display:none;
+}

@@ -47,6 +47,7 @@ const Searchbar = () => {
       axios.get(  `http://localhost:8080/addCourse?code=${currentCourse}`)
         .then((response) => {
           console.log(response);
+          window.scrollTo(0, 0);
           const data = response.data;
           setSuccesfulAdd(data)
           if (data === 3) {
@@ -179,28 +180,5 @@ const closePopup = ()=>{
 
 }
 
-
-
-//  const createFunction = (course_code) => {
-//   const currentCourse = course_code;
-//   const handleAdd = (event) => {
-//     event.preventDefault();
-//     axios.get(  `http://localhost:8080/addCourse?code=${currentCourse}`)
-//       .then((response) => {
-//         console.log(response);
-//         const data = response.data;
-//         if (data === true) {
-//           document.getElementById("myPopup").style.display="inline";
-//           console.log("Add class ran")
-//         } else {
-//           console.log("Add class ran, but died")
-//         }
-//       })
-//       .catch((error) => {
-//         console.log("Add class failed")
-//       });
-//   }
-//   return handleAdd;
-// }
 
 export default Searchbar;
