@@ -4,6 +4,9 @@ import { useEffect } from 'react';
 import ScheduleCard from '../Components/ScheduleCard'
 import AddScheduleCard from '../Components/AddScheduleCard'
 import axios from 'axios';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 export default function Home(){
@@ -43,8 +46,19 @@ export default function Home(){
     // };
     const showScheduleCards = true;
     return (
-      <div>
-      {showScheduleCards ? (
+      <Container>
+        <Row>
+            <AddScheduleCard />
+        </Row>
+        <Row>
+            {scheduleCards.map((scheduleCard) => {
+              console.log(scheduleCard);
+              return (
+                <ScheduleCard title={scheduleCard.title}/>
+              );
+            })}
+        </Row>
+      {/* {showScheduleCards ? (
         <>
           <div id="loadedCards">
             {scheduleCards.map((scheduleCard) => {
@@ -60,7 +74,7 @@ export default function Home(){
       )}
         <div id="addCard">
           <AddScheduleCard />
-        </div>
-      </div>
+        </div> */}
+      </Container>
     )
 }
