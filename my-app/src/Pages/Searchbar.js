@@ -47,6 +47,7 @@ const Searchbar = () => {
       axios.get(  `http://localhost:8080/addCourse?code=${currentCourse}`)
         .then((response) => {
           console.log(response);
+          window.scrollTo(0, 0);
           const data = response.data;
           setSuccesfulAdd(data)
           if (data === 3) {
