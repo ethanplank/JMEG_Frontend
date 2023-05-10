@@ -6,9 +6,10 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import "./Searchbar.css";
 
 
-export default function CreateScheduleForm() {
+const CreateScheduleForm = () => {
     const navigate = useNavigate();
     const routeChange = () => {
         let path = '../calendar';
@@ -39,7 +40,7 @@ export default function CreateScheduleForm() {
         {name: 'Spring', value: '2'},
     ]
 
-    const [year, setYear] = useState(['2018', 3])
+    const [year, setYear] = useState('2018')
 
 
     const handleYear = (val) => {
@@ -52,11 +53,15 @@ export default function CreateScheduleForm() {
             .then((response) => {
                 console.log(response);
                 const data = response.data;
-                if(data === true) {
+                if(data === 0) {
                     console.log("Schedule succesfully added");
                     routeChange();
+                } else if (data === 1) {
+                    document.getElementById("addScheduleFailExist").style.display="inline";
+                } else if (data === 2) {
+                    document.getElementById("addScheduleFailEmpty").style.display="inline";
                 } else {
-                    console.log("Reached backend, but failed to add");
+                    console.log("Unkown Failure")
                 }
             })
             .catch((error) => {
@@ -67,6 +72,18 @@ export default function CreateScheduleForm() {
     return (
         <>
         <Form onSubmit={onFormSubmit}>
+            <div class="alert alert-danger" id="addScheduleFailExist" role="alert">
+                Failed to create schedule due to same name as another schedule.
+              <button type="button" class="close" data-dismiss="alert" onClick={closePopup} aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="alert alert-danger" id="addScheduleFailEmpty" role="alert">
+                Failed to create schedule due to unfilled boxes.
+              <button type="button" class="close" data-dismiss="alert" onClick={closePopup} aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
             <Form.Group className="mb-3">
                 <Form.Label>Schedule Name (Required)</Form.Label>
                 <Form.Control 
@@ -151,3 +168,10 @@ export default function CreateScheduleForm() {
         </>
       );
 }
+
+const closePopup = ()=>{
+    document.getElementById("addScheduleFailExist").style.display="none";
+    document.getElementById("addScheduleFailEmpty").style.display="none";
+}
+
+export default CreateScheduleForm;
