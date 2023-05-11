@@ -19,10 +19,10 @@ function ScheduleCard(schedule) {
         <Card className="schedule-card" border= 'primary' style={{ width: '18rem' }}>
             <Card.Body>
                 {/* <Card.Img src="./plus.png"></Card.Img> */}
-                <Button size="lg" onClick={() => routeChange()}>
+                <Button className="add_button" size="xl" onClick={() => routeChange()}>
                     <Image src="plus.png" fluid={true} ></Image>
                 </Button>
-                <Card.Title>New Schedule</Card.Title>
+                {/* <Card.Title>New Schedule</Card.Title> */}
                 
             </Card.Body>
         </Card>
