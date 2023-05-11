@@ -1,15 +1,13 @@
-.btn-yellow {
+.btn-yellow:active {
     background-color:gold !important;
     outline-color:invert !important;
 } 
 
-.btn-red { 
+.btn-red:active { 
     background-color:rgb(255, 0, 0) !important;
-    outline-color:invert !important;
-    outline-width:thick !important;
-} 
+}
 
-.btn-blue {
+.btn-blue:active {
     background-color:rgb(4, 0, 255) !important;
 }
 

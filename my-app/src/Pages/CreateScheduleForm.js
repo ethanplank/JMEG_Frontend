@@ -21,9 +21,16 @@ const CreateScheduleForm = () => {
         onSemesterToggle = e => ({target:{}}) => setSemester(semester);
         console.log(semester)
 
+    const [year, setYear] = useState('2018')
+
+    const [color, setColor] = useState('red')
+
     const [title, setTitle] = useState(''),
         onTitleInput = ({target:{value}}) => setTitle(value);
         console.log(title)
+        console.log(semester)
+        console.log(color)
+        console.log(year)
         
     const onFormSubmit = event => {
         event.preventDefault()
@@ -35,16 +42,16 @@ const CreateScheduleForm = () => {
         };
 
     const [radioValue, setRadioValue] = useState('1')
-    
 
     const semesters = [
         {name: 'Fall', value: '1'},
         {name: 'Spring', value: '2'},
     ]
 
-    const [year, setYear] = useState('2018')
-
-    const [color, setColor] = useState('')
+    const colors = [
+        {name: 'red', value: '1'},
+        {}
+    ]
 
     const handleYear = (val) => {
         setYear(val);
@@ -103,8 +110,8 @@ const CreateScheduleForm = () => {
                     />
             </Form.Group>
 
-            <Form.Group className="mb-3">
-                <Form.Label>Year</Form.Label>
+            <Form.Group>
+                <Form.Label>Semester (Required)</Form.Label>
             </Form.Group>
 
             <ButtonGroup>
@@ -128,8 +135,8 @@ const CreateScheduleForm = () => {
                 ))}
             </ButtonGroup>
 
-            <Form.Group className="mb-3">
-                <Form.Label>Semester</Form.Label>
+            <Form.Group>
+                <Form.Label>Year (Required)</Form.Label>
             </Form.Group>
 
             <ToggleButtonGroup type="radio" name="years" onChange={handleYear}>
@@ -143,13 +150,13 @@ const CreateScheduleForm = () => {
                     2020
                 </ToggleButton>
             </ToggleButtonGroup>
-
+{/* 
             <Form.Group className="mb-3">
                 <Form.Label>Icon Color</Form.Label>
-            </Form.Group>
+            </Form.Group> */}
 
-            <ToggleButtonGroup type="radio" name="colors" onChange={handleColor}>
-                <ToggleButton className="btn-red" id="tbg-radio-1" value={'red'}>
+            {/* <ToggleButtonGroup type="radio" name="colors" onChange={handleColor}>
+                <ToggleButton color="red" id="tbg-radio-1" value={'red'} active>
                     Red
                 </ToggleButton>
                 <ToggleButton className="btn-blue" id="tbg-radio-1" value={'blue'}>
@@ -187,16 +194,22 @@ const CreateScheduleForm = () => {
                 required={false}
                 // value={value}
                 />
-            </Form.Group>
+            </Form.Group> */}
 
-            <Button 
+            <Form.Group>
+                <Form.Label>Done?</Form.Label>
+            </Form.Group>
+            <Button type="submit">
+                Create Schedule
+            </Button>
+            {/* <Button 
                 type="submit"
                 // onClick={() => {
         
                 //     }}
                 >
                 Create Schedule!
-            </Button>
+            </Button> */}
         </Form>
         </>
       );
