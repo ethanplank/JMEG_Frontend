@@ -136,34 +136,21 @@ const CreateScheduleForm = () => {
                 </ToggleButton>
             </ToggleButtonGroup>
 
-            {/* <Form.Group  className="mb-3">
-                <Form.Label>Schedule Description</Form.Label>
-                <Form.Control 
-                as="textarea" 
-                rows={3} 
-                placeholder="Enter a description"
-                required={false}
-                // value={value}
-                />
+            <Form.Group  className="mb-3">
+                <Form.Label></Form.Label>
             </Form.Group>
 
-            <Form.Group controlId="formFile" className="mb-3">
-                <Form.Label>Picture</Form.Label>
-                <Form.Control 
-                type="file" 
-                required={false}
-                // value={value}
-                />
-            </Form.Group> */}
-
-            <Button 
-                type="submit"
+            <Form.Group className="mb-3" sty>
+                <Button 
+                    type="submit"
                 // onClick={() => {
         
                 //     }}
-                >
+                    >
                 Create Schedule!
-            </Button>
+                </Button>
+            </Form.Group>
+            
         </Form>
         </>
       );
