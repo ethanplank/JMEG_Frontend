@@ -7,6 +7,8 @@ import Popup from 'reactjs-popup';
 import Form from 'react-bootstrap/Form';
 import "./ScheduleCard.css"
 import Image from 'react-bootstrap/Image';
+import "./ScheduleCard.css"
+
 
 function ScheduleCard(schedule) {
     let navigate = useNavigate();
@@ -16,11 +18,12 @@ function ScheduleCard(schedule) {
     }
 
     return (
-        <Card className="schedule-card" border= 'primary' style={{ width: '18rem' }}>
+        <Card className="schedule-card" border= 'primary' style={{ width: '15rem' }}>
             <Card.Body>
                 {/* <Card.Img src="./plus.png"></Card.Img> */}
-                <Button className="add_button" size="xl" onClick={() => routeChange()}>
-                    <Image src="plus.png" fluid={true} ></Image>
+                <Button className="add_button" size="lg" onClick={() => routeChange()}>
+                    <p id="plus">+</p>
+                    {/* <Image color="white" src="plus.png" fluid={true} ></Image> */}
                 </Button>
                 {/* <Card.Title>New Schedule</Card.Title> */}
                 

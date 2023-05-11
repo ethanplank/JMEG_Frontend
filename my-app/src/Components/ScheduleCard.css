@@ -6,5 +6,8 @@
 }
 .add_button {
     height:fill !important;
-    width:fill-content !important;
+    width:180px !important;
+}
+#plus{
+    font-size: 150px;
 }
