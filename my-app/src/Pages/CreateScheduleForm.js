@@ -6,6 +6,7 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import './CreateScheduleForm.css';
 
 
 export default function CreateScheduleForm() {
@@ -28,6 +29,7 @@ export default function CreateScheduleForm() {
             setYear(year)
             setTitle(title)
             setSemester(semester)
+            setColor(color)
             createSchedule()
         };
 
@@ -41,10 +43,16 @@ export default function CreateScheduleForm() {
 
     const [year, setYear] = useState(['2018', 3])
 
+    const [color, setColor] = useState('')
 
     const handleYear = (val) => {
         setYear(val);
         console.log(val)
+    }
+
+    const handleColor = (val) => {
+        setColor(val);
+        console.log(val);
     }
 
     const createSchedule = () => {
@@ -116,6 +124,31 @@ export default function CreateScheduleForm() {
                 </ToggleButton>
                 <ToggleButton id="tbg-radio-3" value={'2020'}>
                     2020
+                </ToggleButton>
+            </ToggleButtonGroup>
+
+            <Form.Group className="mb-3">
+                <Form.Label>Icon Color</Form.Label>
+            </Form.Group>
+
+            <ToggleButtonGroup type="radio" name="colors" onChange={handleColor}>
+                <ToggleButton className="btn-red" id="tbg-radio-1" value={'red'}>
+                    Red
+                </ToggleButton>
+                <ToggleButton className="btn-blue" id="tbg-radio-1" value={'blue'}>
+                    Blue
+                </ToggleButton>
+                <ToggleButton className="btn-green" id="tbg-radio-1" value={'green'}>
+                    Green
+                </ToggleButton>
+                <ToggleButton className="btn-yellow" id="tbg-radio-1" value={'yellow'}>
+                    Yellow
+                </ToggleButton>
+                <ToggleButton className="btn-purple" id="tbg-radio-1" value={'purple'}>
+                    Purple
+                </ToggleButton>
+                <ToggleButton className="btn-orange" id="tbg-radio-1" value={'orange'}>
+                    Orange
                 </ToggleButton>
             </ToggleButtonGroup>
 
