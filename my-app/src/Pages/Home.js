@@ -49,8 +49,6 @@ export default function Home(){
       <Container>
         <Row>
             <AddScheduleCard />
-        </Row>
-        <Row>
             {scheduleCards.map((scheduleCard) => {
               console.log(scheduleCard);
               return (
