@@ -1,0 +1,26 @@
+.btn-yellow {
+    background-color:gold !important;
+    outline-color:invert !important;
+} 
+
+.btn-red { 
+    background-color:rgb(255, 0, 0) !important;
+    outline-color:invert !important;
+    outline-width:thick !important;
+} 
+
+.btn-blue {
+    background-color:rgb(4, 0, 255) !important;
+}
+
+.btn-green {
+    background-color:rgb(0, 255, 55) !important;
+}
+
+.btn-purple {
+    background-color:rgb(204, 0, 255) !important;
+}
+
+.btn-orange {
+    background-color:rgb(255, 153, 0) !important;
+}
