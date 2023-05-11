@@ -136,7 +136,7 @@ const CreateScheduleForm = () => {
                 </ToggleButton>
             </ToggleButtonGroup>
 
-            <Form.Group  className="mb-3">
+            {/* <Form.Group  className="mb-3">
                 <Form.Label>Schedule Description</Form.Label>
                 <Form.Control 
                 as="textarea" 
@@ -154,7 +154,7 @@ const CreateScheduleForm = () => {
                 required={false}
                 // value={value}
                 />
-            </Form.Group>
+            </Form.Group> */}
 
             <Button 
                 type="submit"
